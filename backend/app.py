@@ -2,24 +2,39 @@
 #-*- coding: utf-8 -*-
 
 import os, argparse
-from flask import Flask, jsonify, send_from_directory, request
+from flask import Flask, jsonify, send_from_directory, request, make_response
+from models.model import Model
 
 
 ROOT_DIR = './build'
 STATIC_DIR = os.path.join(ROOT_DIR, 'static')
 app = Flask(__name__, static_folder=STATIC_DIR)
 
+model = Model()
+model.setup()
 
 ''' API definitions '''
 
-@app.route('/api/sample')
-def items():
-    ''' Sample API returns repeated query words '''
-    query = request.args.get('query', '')
-    page = int(request.args.get('page', 1))
-    sort = request.args.get('sort')
-    res  = [query * i for i in range(1, 11)] if query else []
-    return jsonify(res)
+@app.route('/api/predict', methods=['POST'])
+def upload_multipart():
+
+    if 'uploadfile' not in request.files:
+        return make_response(jsonify({'status':'err. uploadfile is required.'}))
+
+    # <class 'werkzeug.datastructures.FileStorage'>
+    uploaded = request.files['uploadfile']
+    filename = uploaded.filename
+    if not filename:
+        return make_response(jsonify({
+            'status':'error',
+            'message': 'filename must not be empty.',
+        }))
+    predicted = model.predict(uploaded)
+    return make_response(jsonify({
+        'status': 'ok',
+        'predicted': predicted
+    }))
+
 
 
 ''' static html '''
