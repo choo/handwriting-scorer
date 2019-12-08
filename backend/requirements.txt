@@ -1,1 +1,2 @@
 Flask==1.0.3
+-e git://github.com/choo/fsutils#egg=fsutils-1.0.0
