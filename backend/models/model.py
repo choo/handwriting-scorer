@@ -32,8 +32,6 @@ class Model(object):
         conf = fsutils.read_yaml(self.config_path)
         self.weight_path = os.path.join(self.data_dir, conf['weight_file'])
         self.label_path  = os.path.join(self.data_dir, conf['label_info_file'])
-        self.width  = conf['width']
-        self.height = conf['height']
         self.model_name = conf['model_name']
 
     def setup(self):
@@ -55,17 +53,19 @@ class Model(object):
         self.loaded_model = keras.models.load_model(self.weight_path)
         self.loaded_model._make_predict_function()
 
+        self.input_shape = self.loaded_model.input_shape[1:] # (h, w, c)
+
     def predict(self, blob):
 
         # FIXME: uploaded image should be a gray scale
         img = Image.open(blob).convert("L")
-        img = img.resize((self.width, self.height))
+        img = img.resize((self.input_shape[1], self.input_shape[0]))
 
         ''' debug '''
         img.save(os.path.join(self.log_dir, "./resized.png"))
 
         np_img = np.array(img)
-        np_img = np_img.reshape((1, self.width, self.height, 1))
+        np_img = np_img.reshape((1,) + self.input_shape)
         np_img = self.preprocess_func(np_img)
 
         start = time.time()
