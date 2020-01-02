@@ -1,9 +1,12 @@
 import React from 'react';
 import Button         from '@material-ui/core/Button';
-import Box            from '@material-ui/core/Box';
 import Grid           from '@material-ui/core/Grid';
 import { makeStyles }   from '@material-ui/core/styles';
 import Typography     from '@material-ui/core/Typography';
+
+import LineWeightIcon from '@material-ui/icons/LineWeight';
+import CancelIcon from '@material-ui/icons/Cancel';
+import CheckIcon from '@material-ui/icons/Check';
 
 import { disableBodyScroll } from 'body-scroll-lock';
 
@@ -12,11 +15,10 @@ import PropTypes from 'prop-types';
 import Wording   from '../lang';
 
 const LANG = 'en'
-const padding = 8 + 0;  // px. defined Box in App.js as 8(p={1}) + 1(border)
 const canvasBorder = 2;
 
 const pathConf = {
-  weight: 3,
+  weight: 10,
   color: '#000'
 };
 
@@ -36,23 +38,17 @@ const HandwritingCanvas = (props) => {
       value: function (callback, type, quality) {
         var canvas = this;
         setTimeout(function() {
-
           var binStr = atob( canvas.toDataURL(type, quality).split(',')[1] ),
               len = binStr.length,
               arr = new Uint8Array(len);
-
           for (var i = 0; i < len; i++ ) {
             arr[i] = binStr.charCodeAt(i);
           }
-
           callback( new Blob( [arr], {type: type || 'image/png'} ) );
-
         });
       }
     });
   }
-
-
 
 
   const classes = useStyles();
@@ -65,7 +61,7 @@ const HandwritingCanvas = (props) => {
     if (!hasStarted) {
       const canvas = canvasRef.current;
       const wrapper = canvas.parentElement;
-      const size = wrapper.offsetWidth - (padding + canvasBorder) * 2;
+      const size = wrapper.offsetWidth - (canvasBorder) * 2;
       canvas.width  = size;
       canvas.height = size;
       resetCanvas();
@@ -130,7 +126,7 @@ const HandwritingCanvas = (props) => {
     const canvas = canvasRef.current;
     canvas.toBlob(blob => {
       resetCanvas();
-      props.onUpdateCanvas(blob);
+      props.onScore(blob);
     });
   };
   const resetCanvas = () => {
@@ -157,14 +153,12 @@ const HandwritingCanvas = (props) => {
   };
 
   return (
-    <Box
-      p={1}
-      width={340}
-    >
-      <Typography component="div">
-        <Box textAlign="center" fontWeight="fontWeightMedium" fontSize="h5.fontSize" >
+    <>
+      <Typography variant="subtitle1">
         {Wording.aboveCanvas[LANG]}
-        </Box>
+      </Typography>
+      <Typography variant="subtitle2">
+        {Wording.aboveCanvas2[LANG]}
       </Typography>
 
       <canvas
@@ -184,49 +178,54 @@ const HandwritingCanvas = (props) => {
         onTouchMove={draw}
       />
 
-      <SubmitButton
-        onClick={updateCanvas}
-        display={Wording.scoreButton[LANG]}
-      />
-      <SubmitButton
-        onClick={resetCanvas}
-        display={Wording.resetButton[LANG]}
-      />
+      <Grid
+        container
+        direction="row"
+        //justify="space-between"
+        alignItems="flex-start"
+        spacing={1}
+      >
+        <Grid item xs={6}>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={resetCanvas}>
+              <LineWeightIcon />
+              {Wording.lineWeightButton[LANG]}
+          </Button>
+        </Grid>
+        <Grid item xs={6}>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={resetCanvas}>
+              <CancelIcon />
+              {Wording.resetButton[LANG]}
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={updateCanvas}
+          >
+            <CheckIcon />
+            {Wording.scoreButton[LANG]}
+          </Button>
+        </Grid>
+      </Grid>
 
-    </Box>
+    </>
   );
 };
 
 HandwritingCanvas.propTypes = {
-  onUpdateCanvas: PropTypes.func.isRequired,
+  onScore: PropTypes.func.isRequired,
 };
 
-
-const SubmitButton = props => {
-  return (
-    <Grid
-      container
-      direction="row"
-      justify="flex-end"
-      alignItems="flex-start"
-      spacing={2}
-    >
-      <Grid item xs={8}>
-        <Button
-          fullWidth
-          variant="contained"
-          onClick={props.onClick}>
-            {props.display}
-        </Button>
-      </Grid>
-    </Grid>
-  )
-};
-
-SubmitButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  display: PropTypes.string.isRequired,
-};
 
 
 export default HandwritingCanvas;
