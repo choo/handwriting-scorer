@@ -28,7 +28,7 @@ const ResultsSelection = props => {
             variant="contained"
             onClick={(e) => props.onSelectKana(kanaCode)}
           >
-            {String.fromCharCode(parseInt(kanaCode, 16)) + '?'}
+            {String.fromCharCode(parseInt(kanaCode, 16))}
             {' ' + result[1].toFixed(4)} {/* probablity */}
           </Button>
         )
