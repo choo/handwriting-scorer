@@ -4,7 +4,6 @@ import Grid           from '@material-ui/core/Grid';
 import { makeStyles }   from '@material-ui/core/styles';
 import Typography     from '@material-ui/core/Typography';
 
-import LineWeightIcon from '@material-ui/icons/LineWeight';
 import CancelIcon from '@material-ui/icons/Cancel';
 import CheckIcon from '@material-ui/icons/Check';
 
@@ -13,12 +12,13 @@ import { disableBodyScroll } from 'body-scroll-lock';
 import PropTypes from 'prop-types';
 
 import Wording   from '../lang';
+import LineWeightButton from './LineWeightButton';
 
 const LANG = 'en'
 const canvasBorder = 2;
 
 const pathConf = {
-  weight: 10,
+  weight: 9,
   color: '#000'
 };
 
@@ -54,6 +54,7 @@ const HandwritingCanvas = (props) => {
   const classes = useStyles();
   const canvasRef = React.useRef(null)
   const [isDrawing, setIsDrawing] = React.useState(false);
+  const [lineWeight, setLineWeight] = React.useState(pathConf.weight);
 
   // initialization of canvas DOM
   const [hasStarted, setHasStarted] = React.useState(false);
@@ -117,7 +118,7 @@ const HandwritingCanvas = (props) => {
     const [x, y] = getPosition(e);
     ctx.lineTo(x, y);
     ctx.lineCap = 'round';
-    ctx.lineWidth = pathConf.weight;
+    ctx.lineWidth = lineWeight;
     ctx.strokeStyle = pathConf.color;
     ctx.stroke();
   }
@@ -185,17 +186,14 @@ const HandwritingCanvas = (props) => {
         alignItems="flex-start"
         spacing={1}
       >
-        <Grid item xs={6}>
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            onClick={resetCanvas}>
-              <LineWeightIcon />
-              {Wording.lineWeightButton[LANG]}
-          </Button>
+        <Grid item xs={4}>
+          <LineWeightButton
+            onChangeWeight={val => setLineWeight(val)}
+            weight={lineWeight}
+          />
         </Grid>
-        <Grid item xs={6}>
+
+        <Grid item xs={8}>
           <Button
             fullWidth
             variant="contained"
