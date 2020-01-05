@@ -5,39 +5,64 @@ import Grid           from '@material-ui/core/Grid';
 import TextField      from '@material-ui/core/TextField';
 import Typography     from '@material-ui/core/Typography';
 
-import TitleWithImage from './TitleWithImage';
 import {isKana, shuffleArray} from '../utils';
 
 const ResultsSelection = props => {
+  const imgRef = React.useRef(null)
+  React.useEffect(() => {
+    if (props.imageBlob) {
+      imgRef.current.src = window.URL.createObjectURL(props.imageBlob);
+    }
+  });
   return (
     <>
-      <TitleWithImage
-        //left=Wording.predicted[LANG]
-        left={'written letter '}
-        right={'is ...'}
-        imageBlob={props.imageBlob}
-        leftWidth={5}
-      />
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+        alignItems="center"
+        spacing={1}
+      >
+        <Grid item xs={4}>
+          <img
+            width={'100%'}
+            border={'1'}
+            ref={imgRef}
+            alt={'canvas content'}
+          />
+        </Grid>
+        <Grid item xs={8}>
+          <Typography>{'あなたの書いた左の文字は…'}</Typography>
+        </Grid>
+      </Grid>
 
-      <Box>
+      <Grid
+        container
+        direction="row"
+        justify="space-evenly"
+        alignItems="center"
+        spacing={1}
+      >
       {shuffleArray(props.predicted).map(result => {
         const kanaCode = result[0];
         return (
-          <Button
-            key={kanaCode}
-            variant="contained"
-            onClick={(e) => props.onSelectKana(kanaCode)}
-          >
-            {String.fromCharCode(parseInt(kanaCode, 16))}
-            {' ' + result[1].toFixed(4)} {/* probablity */}
-          </Button>
+          <Grid item xs={2}>
+            <Button
+              fullWidth
+              key={kanaCode}
+              variant="outlined"
+              style={{minWidth: '50px'}}
+              onClick={(e) => props.onSelectKana(kanaCode)}
+            >
+              <Typography variant="h6">
+              {String.fromCharCode(parseInt(kanaCode, 16))}
+              {/* {' ' + result[1].toFixed(4)} {/* probablity */}
+              </Typography>
+            </Button>
+          </Grid>
         )
       })}
-      </Box>
-
-      <InputCustom
-        onSelectKana={props.onSelectKana}
-      />
+      </Grid>
 
       <Grid
         container
@@ -52,7 +77,8 @@ const ResultsSelection = props => {
             variant="contained"
             color="primary"
             onClick={props.onClickBack}
-          >他の文字を探す</Button>
+            disabled
+          >他の文字から選ぶ</Button>
         </Grid>
         <Grid item xs={3}>
           <Button
