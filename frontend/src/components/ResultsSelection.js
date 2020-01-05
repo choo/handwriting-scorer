@@ -77,7 +77,7 @@ const ResultsSelection = props => {
             variant="contained"
             color="primary"
             onClick={props.onClickBack}
-            disabled
+            disabled // TODO: add function
           >他の文字から選ぶ</Button>
         </Grid>
         <Grid item xs={3}>
