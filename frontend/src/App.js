@@ -117,6 +117,7 @@ class App extends React.Component {
                 predicted={this.state.ajaxResults.predicted.slice(0, NUM_DISP)}
                 imageBlob={this.state.imageBlob}
                 onSelectKana={this.selectKana}
+                onClickBack={this.goBackHome}
               />
             ) : (
               <ScoreDisplay

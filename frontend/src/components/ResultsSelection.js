@@ -38,6 +38,19 @@ const ResultsSelection = props => {
       <InputCustom
         onSelectKana={props.onSelectKana}
       />
+
+      <Grid
+        container
+        direction="row"
+        justify="flex-end"
+        alignItems="flex-end"
+      >
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={props.onClickBack}
+        >戻る</Button>
+      </Grid>
     </>
   );
 };
