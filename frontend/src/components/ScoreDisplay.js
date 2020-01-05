@@ -69,7 +69,7 @@ const ScoreDisplay = props => {
               fullWidth
               variant="contained"
               onClick={props.onClickBack}
-              disabled
+              disabled // TODO: add function
             >「{props.chara}」の満点の例を見る</Button>
           </Grid>
           <Grid item xs={3}>
