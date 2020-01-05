@@ -65,16 +65,22 @@ const ScoreDisplay = props => {
           alignItems="flex-end"
           spacing={1}
         >
-          <Button
-            variant="contained"
-            onClick={props.onClickBack}
-            disabled
-          >「{props.chara}」の満点の例を見る</Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={props.onClickBack}
-          >戻る</Button>
+          <Grid item xs={8}>
+            <Button
+              fullWidth
+              variant="contained"
+              onClick={props.onClickBack}
+              disabled
+            >「{props.chara}」の満点の例を見る</Button>
+          </Grid>
+          <Grid item xs={3}>
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={props.onClickBack}
+            >戻る</Button>
+          </Grid>
         </Grid>
       </>
   )

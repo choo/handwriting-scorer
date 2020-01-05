@@ -43,13 +43,25 @@ const ResultsSelection = props => {
         container
         direction="row"
         justify="flex-end"
-        alignItems="flex-end"
+        //alignItems="flex-end"
+        spacing={1}
       >
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={props.onClickBack}
-        >戻る</Button>
+        <Grid item xs={12}>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={props.onClickBack}
+          >他の文字を探す</Button>
+        </Grid>
+        <Grid item xs={3}>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={props.onClickBack}
+          >戻る</Button>
+        </Grid>
       </Grid>
     </>
   );
