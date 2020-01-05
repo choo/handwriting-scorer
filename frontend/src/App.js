@@ -107,7 +107,7 @@ class App extends React.Component {
         <Container
           maxWidth='xs'
         >
-          <Box>
+          <Box pt={1}>
             {this.state.currentStatus === 0 ? (
               <HandwritingCanvas
                 onScore={this.onScore}
