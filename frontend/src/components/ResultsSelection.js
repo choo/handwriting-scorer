@@ -6,6 +6,7 @@ import TextField      from '@material-ui/core/TextField';
 import Typography     from '@material-ui/core/Typography';
 
 import {isKana, shuffleArray} from '../utils';
+import {hiragana} from '../const';
 
 const ResultsSelection = props => {
   const imgRef = React.useRef(null)
@@ -14,6 +15,10 @@ const ResultsSelection = props => {
       imgRef.current.src = window.URL.createObjectURL(props.imageBlob);
     }
   });
+  const [isCustom, setIsCustom] = React.useState(false);
+  const setCustom = () => {
+    setIsCustom(true);
+  }
   return (
     <>
       <Grid
@@ -36,6 +41,28 @@ const ResultsSelection = props => {
         </Grid>
       </Grid>
 
+      {!isCustom ? (
+        <SelectCandidate
+          predicted={props.predicted}
+          onSelectKana={props.onSelectKana}
+          onClickBack={props.onClickBack}
+          onSelectCustom={setCustom}
+        />
+      ) : (
+        <SelectCustom
+          onSelectKana={props.onSelectKana}
+          onClickBack={props.onClickBack}
+        />
+      )}
+
+    </>
+  );
+};
+
+
+const SelectCandidate = props => {
+  return (
+    <>
       <Grid
         container
         direction="row"
@@ -46,10 +73,9 @@ const ResultsSelection = props => {
       {shuffleArray(props.predicted).map(result => {
         const kanaCode = result[0];
         return (
-          <Grid item xs={2}>
+          <Grid item xs={2} key={kanaCode}>
             <Button
               fullWidth
-              key={kanaCode}
               variant="outlined"
               style={{minWidth: '50px'}}
               onClick={(e) => props.onSelectKana(kanaCode)}
@@ -76,8 +102,7 @@ const ResultsSelection = props => {
             fullWidth
             variant="contained"
             color="primary"
-            onClick={props.onClickBack}
-            disabled // TODO: add function
+            onClick={props.onSelectCustom}
           >他の文字から選ぶ</Button>
         </Grid>
         <Grid item xs={3}>
@@ -94,46 +119,59 @@ const ResultsSelection = props => {
 };
 
 
-const InputCustom = props => {
-  const [isError, setIsError] = React.useState(false);
-  const [customChar, setCustomChar] = React.useState('');
-  const onChangeText = (text) => {
-    console.log('on change text')
-    setCustomChar(text);
-  };
-  const submitCustomChar = () => {
-    console.log(' submit hogheoge');
-    if (!customChar.length) {
-      setIsError(false);
-    } else {
-      if (customChar.length === 1 && isKana(customChar)) {
-        const code = '0x' + customChar.charCodeAt(0).toString(16)
-        props.onSelectKana(code)
-        setIsError(false);
-      } else {
-        setIsError(true);
-      }
-    }
-  };
+const SelectCustom = props => {
   return (
-    <Grid container direction="row" justify="flex-end" alignItems="baseline">
-      <Typography>{' or ...  '}</Typography>
-      {/*<Typography>{Wording.otherLetter[LANG]}</Typography>*/}
-      <TextField
-        placeholder=""
-        margin="normal"
-        variant="outlined"
-        // TODO: should use makeStyles 
-        style={{width: 120, textAlign: 'center'}} 
-        helperText={isError ? 'かな一字を入力': ''}
-        onChange={e => onChangeText(e.target.value)}
-        inputProps={{maxLength: 4}}
-      />
-      <Button
-        variant="contained"
-        onClick={e => submitCustomChar()}
-      >{'submit this char'}</Button>
-    </Grid>
+    <>
+    {hiragana.map((row, i) => {
+      return (
+      <Grid
+        key={i}
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        spacing={1}
+      >
+        {row.map((c, j) => {
+          const kanaCode = '0x' + c.charCodeAt(0).toString(16)
+          return (
+            <Grid item xs={2} key={j}>
+              {c ? (
+              <Button
+                fullWidth
+                variant="outlined"
+                style={{minWidth: '50px'}}
+                onClick={(e) => props.onSelectKana(kanaCode)}
+              >
+                <Typography variant="h6">
+                  {c}
+                </Typography>
+              </Button>
+              ) : null}
+            </Grid>
+          )
+        })}
+      </Grid>
+      )
+    })}
+
+      <Grid
+        container
+        direction="row"
+        justify="flex-end"
+        //alignItems="flex-end"
+        spacing={1}
+      >
+        <Grid item xs={3}>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={props.onClickBack}
+          >戻る</Button>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 
