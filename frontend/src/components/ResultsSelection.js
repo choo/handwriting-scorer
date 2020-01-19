@@ -37,7 +37,7 @@ const ResultsSelection = props => {
           />
         </Grid>
         <Grid item xs={8}>
-          <Typography>{'あなたの書いた左の文字は…'}</Typography>
+          <Typography>{'あなたの書いた文字は…'}</Typography>
         </Grid>
       </Grid>
 
