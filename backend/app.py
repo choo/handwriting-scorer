@@ -13,11 +13,7 @@ app = Flask(__name__, static_folder=STATIC_DIR)
 model = Model()
 model.setup()
 
-''' API definitions '''
-
-@app.route('/api/predict', methods=['POST'])
-def upload_multipart():
-
+def _extract_uploaded_image():
     if 'uploadfile' not in request.files:
         return make_response(jsonify({'status':'err. uploadfile is required.'}))
 
@@ -29,6 +25,14 @@ def upload_multipart():
             'status':'error',
             'message': 'filename must not be empty.',
         }))
+    return uploaded
+
+
+''' API definitions '''
+
+@app.route('/api/predict', methods=['POST'])
+def predictResult():
+    uploaded = _extract_uploaded_image()
     predicted = model.predict(uploaded)
     return make_response(jsonify({
         'status': 'ok',
