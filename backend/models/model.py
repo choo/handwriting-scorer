@@ -57,12 +57,8 @@ class Model(object):
 
     def predict(self, blob):
 
-        # FIXME: uploaded image should be a gray scale
         img = Image.open(blob).convert("L")
         img = img.resize((self.input_shape[1], self.input_shape[0]))
-
-        ''' debug '''
-        img.save(os.path.join(self.log_dir, "./resized.png"))
 
         np_img = np.array(img)
         np_img = np_img.reshape((1,) + self.input_shape)
