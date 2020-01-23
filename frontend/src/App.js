@@ -42,28 +42,37 @@ class App extends React.Component {
 
   }
 
-  onScore(image_blob) {
-    this.setState({
-      currentStatus: 1,
-      imageBlob: image_blob
-    });
+
+  async postImage(url, image_blob) {
     const form = new FormData();
     form.append('uploadfile', image_blob)
     const config = {
       headers: { 'content-type': 'multipart/form-data' }
     };
-    axios.post(AJAX_URL, form, config)
-      .then(response => {
-        const resData = response.data;
-        this.setState({
-          ajaxResults: {
-            predicted: resData.predicted,
-          },
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      })
+    try {
+      const response = await axios.post(url, form, config);
+      const resData = response.data;
+      this.setState({
+        ajaxResults: {
+          predicted: resData.predicted,
+        },
+      });
+    } catch (error) {
+      const {
+        status,
+        statusText
+      } = error.response;
+      console.log(`Error! HTTP Status: ${status} ${statusText}`);
+    }
+  }
+
+
+  onScore(image_blob) {
+    this.setState({
+      currentStatus: 1,
+      imageBlob: image_blob
+    });
+    this.postImage(AJAX_URL, image_blob);
   }
 
   goBackHome() {
