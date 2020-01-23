@@ -1,9 +1,10 @@
 #! /usr/bin/env python3
 #-*- coding: utf-8 -*-
 
-import os, argparse, datetime, secrets
+import os, argparse, datetime, secrets, time
 from flask import Flask, jsonify, send_from_directory, request, make_response
 from models.model import Model
+from models.gcsutils import GCSUtils
 
 
 SESSION_COOKIE = '__uid'
@@ -13,6 +14,9 @@ app = Flask(__name__, static_folder=STATIC_DIR)
 
 model = Model()
 model.setup()
+
+GCS_BUCKET_NAME = 'handwriting-test-00'
+gcs_utils = GCSUtils()
 
 
 def _make_token(num_bytes=16):
@@ -56,6 +60,19 @@ def predictResult():
         'predicted': predicted
     }))
 
+
+@app.route('/api/upload', methods=['POST'])
+def uploadImage():
+    time_suffix = time.strftime('%Y%m%d-%H%M%S')
+    session_id = _get_session_id(SESSION_COOKIE)
+    image = _extract_uploaded_image()
+
+    dst_name = '{}_{}.png'.format(session_id, time_suffix)
+    gcs_utils.upload_by_file(GCS_BUCKET_NAME, image,
+            dst_name, {'test-prop': 'prop'})
+    return make_response(jsonify({
+        'status': 'ok',
+    }))
 
 
 ''' static html '''

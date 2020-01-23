@@ -107,6 +107,7 @@ class App extends React.Component {
         score: parseInt(score),
       },
     });
+    this.postImage('/api/upload', this.state.imageBlob);
   }
 
   render() {
