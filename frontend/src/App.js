@@ -43,9 +43,11 @@ class App extends React.Component {
   }
 
 
-  async postImage(url, image_blob) {
+  async postImage(url, params) {
     const form = new FormData();
-    form.append('uploadfile', image_blob)
+    for (const [k, v] of Object.entries(params)) {
+      form.append(k, v);
+    }
     const config = {
       headers: { 'content-type': 'multipart/form-data' }
     };
@@ -72,7 +74,7 @@ class App extends React.Component {
       currentStatus: 1,
       imageBlob: image_blob
     });
-    this.postImage(AJAX_URL, image_blob);
+    this.postImage(AJAX_URL, {uploadfile: this.state.imageBlob});
   }
 
   goBackHome() {
@@ -107,7 +109,10 @@ class App extends React.Component {
         score: parseInt(score),
       },
     });
-    this.postImage('/api/upload', this.state.imageBlob);
+    this.postImage('/api/upload', {
+      uploadfile: this.state.imageBlob,
+      charcode: kanaCode,
+    });
   }
 
   render() {
