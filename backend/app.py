@@ -67,10 +67,12 @@ def uploadImage():
     session_id = _get_session_id(SESSION_COOKIE)
     image = _extract_uploaded_image()
     char_code = request.form.get('charcode')
+    prob  = float(request.form.get('prob', 0.0))
+    score = float(request.form.get('score', 0.0))
 
     dst_name = '{}_{}_{}.png'.format(session_id, char_code, time_suffix)
     gcs_utils.upload_by_file(GCS_BUCKET_NAME, image,
-            dst_name, {'test-prop': 'prop'})
+            dst_name, {'score': score, 'prob': prob})
     return make_response(jsonify({
         'status': 'ok',
     }))
