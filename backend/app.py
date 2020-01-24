@@ -66,8 +66,9 @@ def uploadImage():
     time_suffix = time.strftime('%Y%m%d-%H%M%S')
     session_id = _get_session_id(SESSION_COOKIE)
     image = _extract_uploaded_image()
+    char_code = request.form.get('charcode')
 
-    dst_name = '{}_{}.png'.format(session_id, time_suffix)
+    dst_name = '{}_{}_{}.png'.format(session_id, char_code, time_suffix)
     gcs_utils.upload_by_file(GCS_BUCKET_NAME, image,
             dst_name, {'test-prop': 'prop'})
     return make_response(jsonify({
