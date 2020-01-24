@@ -112,6 +112,8 @@ class App extends React.Component {
     this.postImage('/api/upload', {
       uploadfile: this.state.imageBlob,
       charcode: kanaCode,
+      prob: prob,
+      score: score,
     });
   }
 
