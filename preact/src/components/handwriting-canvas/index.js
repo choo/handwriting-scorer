@@ -169,8 +169,7 @@ const HandwritingCanvas = (props) => {
       </div>
 
       <div style={{
-        margin: '6px 0 0',
-        display: 'flex',
+        marginTop: '6px',
       }}>
         <Button outlined onClick={updateCanvas}>
           {Wording.scoreButton[LANG]}
