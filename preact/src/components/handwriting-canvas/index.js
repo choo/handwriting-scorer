@@ -2,6 +2,8 @@ import { h } from 'preact';
 import { useState, useRef, useEffect } from 'preact/hooks';
 import style from './style';
 
+import Button from '../button';
+
 //import CancelIcon from '@material-ui/icons/Cancel';
 //import CheckIcon from '@material-ui/icons/Check';
 
@@ -153,19 +155,16 @@ const HandwritingCanvas = (props) => {
           paddingRight: '6px',
           flex: 1,
         }}>
-          <button class={`${style.button_root} ${style.button} ${style.ripple}`}>
+          <Button outlined>
             線の太さ
-          </button>
+          </Button>
         </div>
         <div style={{
           flex: 2,
         }}>
-          <button
-            class={`${style.button_root} ${style.button} ${style.ripple}`}
-            onClick={resetCanvas}
-          >
+          <Button outlined onClick={resetCanvas}>
             {Wording.resetButton[LANG]}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -173,16 +172,9 @@ const HandwritingCanvas = (props) => {
         margin: '6px 0 0',
         display: 'flex',
       }}>
-        <div style={{
-          flex: 1,
-        }}>
-          <button
-            class={`${style.button_root} ${style.button} ${style.ripple}`}
-            onClick={updateCanvas}
-          >
-            {Wording.scoreButton[LANG]}
-          </button>
-        </div>
+        <Button outlined onClick={updateCanvas}>
+          {Wording.scoreButton[LANG]}
+        </Button>
       </div>
     </>
   );
