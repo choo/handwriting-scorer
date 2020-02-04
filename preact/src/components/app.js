@@ -28,11 +28,16 @@ export default class App extends Component {
     super();
     init();
   }
+
   render() {
     return (
       <div id="app">
         <Header title='Letters' />
-        <Container style={{marginTop: '42px', width: '600px'}}>
+        <Container style={{
+          marginTop: '42px',
+          padding: '0 15px',
+          maxWidth: '480px'}}
+        >
           <Main />
         </Container>
       </div>
