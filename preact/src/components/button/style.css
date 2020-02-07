@@ -39,25 +39,23 @@
 
 /* outlined style */
 .button_outlined {
-  color: #1976d2;
-  border: 1px solid rgba(25, 118, 210, 0.5);
+  border: 1px solid #000;
   background-color: transparent;
-}
-.button_outlined:hover {
-  background-color: rgba(25, 118, 210, 0.04);
 }
 
 
 /* Ripple effect */
 .ripple {
   background-position: center;
-  transition: background 0.8s;
+  transition: background 1.2s;
 }
 .ripple:hover {
-  background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+  /*background: #47a7f5*/
+  background: #dddddd
+    radial-gradient(circle, transparent 1%, #ffffff 1%) center / 15000%;
 }
 .ripple:active {
-  background-color: #6eb9f7;
+  background-color: #dddddd;
   background-size: 100%;
   transition: background 0s;
 }
