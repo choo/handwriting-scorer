@@ -126,10 +126,6 @@ const HandwritingCanvas = (props) => {
 
   return (
     <>
-      <p>
-        {Wording.aboveCanvas[LANG]}
-      </p>
-
       <canvas
         ref={canvasRef}
         class={style.canvas}

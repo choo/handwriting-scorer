@@ -16,7 +16,7 @@ export default class App extends Component {
       <div id="app">
         <Header title='Letters' />
         <Container style={{
-          marginTop: '42px',
+          marginTop: '80px',
           padding: '0 15px',
           maxWidth: '480px'}}
         >
