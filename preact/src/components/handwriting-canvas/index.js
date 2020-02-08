@@ -56,13 +56,13 @@ const HandwritingCanvas = (props) => {
     let x, y;
     const bounds = e.target.getBoundingClientRect();
     if (e.type.startsWith('touch')) {
-      const touch = e.nativeEvent.touches[0] || e.nativeEvent.changedTouches[0];
+      const touch = e.touches[0] || e.changedTouches[0];
       [x, y] = [touch.clientX - bounds.left, touch.clientY - bounds.top];
     } else {
       [x, y] = [e.clientX - bounds.left, e.clientY - bounds.top];
       //[x, y] = [e.pageX - bounds.left, e.pageY - bounds.top];
-      //[x, y] = [e.nativeEvent.offsetX, e.nativeEvent.offsetY]; // -> OK
-      //[x, y] = [e.nativeEvent.layerX, e.nativeEvent.layerY];  // -> OK
+      //[x, y] = [e.offsetX, e.offsetY]; // -> OK
+      //[x, y] = [e.layerX, e.layerY];  // -> OK
     }
     return [x, y];
   };
