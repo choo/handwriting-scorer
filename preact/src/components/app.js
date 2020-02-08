@@ -13,16 +13,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <div id="app">
-        <Header title='Letters' />
-        <Container style={{
-          marginTop: '80px',
-          padding: '0 15px',
-          maxWidth: '480px'}}
-        >
-          <Main />
-        </Container>
-      </div>
+      <Container style={{
+        padding: '0 15px',
+        maxWidth: '480px'}}
+      >
+        <Header />
+        <Main />
+      </Container>
     );
   }
 }
