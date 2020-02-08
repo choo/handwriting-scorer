@@ -51,7 +51,7 @@
 }
 .ripple:hover {
   /*background: #47a7f5*/
-  background: #dddddd
+  background: #ffffff
     radial-gradient(circle, transparent 1%, #ffffff 1%) center / 15000%;
 }
 .ripple:active {
