@@ -1,4 +1,5 @@
 import { useState } from 'preact/hooks';
+import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
 
 import {postImage} from '../../utils/ajax';
 
@@ -10,6 +11,8 @@ const STATUS = {
   SCORING: 2,
 };
 
+disableBodyScroll(window.document.body);
+
 const Main = () => {
   const [status, setStatus] = useState(STATUS.WRITING);
   const [imageBlob, setImageBlob] = useState(null);
@@ -17,6 +20,7 @@ const Main = () => {
   const [selected, setSelected] = useState({});
 
   const submitImage = async (imgBlob) => {
+    enableBodyScroll(window.document.body);
     setStatus(STATUS.SELECTING);
     setImageBlob(imgBlob);
     const result = await postImage('/api/predict', {uploadfile: imgBlob});
