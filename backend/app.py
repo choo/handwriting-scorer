@@ -9,7 +9,7 @@ from models.gcsutils import GCSUtils
 
 SESSION_COOKIE = '__uid'
 ROOT_DIR = './build'
-STATIC_DIR = os.path.join(ROOT_DIR, 'static')
+STATIC_DIR = os.path.join(ROOT_DIR, '')
 app = Flask(__name__, static_folder=STATIC_DIR)
 
 model = Model()
