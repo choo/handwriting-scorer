@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'preact/hooks';
 import style from './style';
 
+import Grid from '../grid';
 import Button from '../button';
 
 //import CancelIcon from '@material-ui/icons/Cancel';
@@ -142,34 +143,23 @@ const HandwritingCanvas = (props) => {
         onTouchMove={draw}
       />
 
-      <div style={{
-        marginTop: '4px',
-        display: 'flex',
-      }}>
-        <div style={{
-          paddingRight: '6px',
-          flex: 1,
-        }}>
+      <Grid container m='4px 0 6px'>
+        <Grid flex={1} p='0 6px 0 0'>
           <Button outlined>
             線の太さ
           </Button>
-        </div>
-        <div style={{
-          flex: 2,
-        }}>
+        </Grid>
+        <Grid flex={2}>
           <Button outlined onClick={resetCanvas}>
             {Wording.resetButton[LANG]}
           </Button>
-        </div>
-      </div>
-
-      <div style={{
-        marginTop: '6px',
-      }}>
+        </Grid>
+      </Grid>
+      <Grid container>
         <Button outlined onClick={updateCanvas}>
           {Wording.scoreButton[LANG]}
         </Button>
-      </div>
+      </Grid>
     </>
   );
 };
