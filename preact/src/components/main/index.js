@@ -5,12 +5,13 @@ import {postImage} from '../../utils/ajax';
 
 import HandwritingCanvas from '../handwriting-canvas';
 import ResultsSelection from '../results-selection';
+import ScoreDisplay from '../score-display';
 import {NUM_DISPLAY} from '../../utils/const';
 
 const STATUS = {
   WRITING: 0,
   SELECTING: 1,
-  SCORING: 2,
+  SHOWING_SCORE: 2,
 };
 
 disableBodyScroll(window.document.body);
@@ -36,6 +37,39 @@ const Main = () => {
     setPredicted([]);
   };
 
+  const selectKana = async (charCode) => {
+    let prob = 0.0;
+    for (const [kana, p] of predicted) {
+      if (kana === charCode) {
+        prob = p;
+        break;
+      }
+    }
+    // 1 - ( x - 1)**4
+    // 1 - (-x + 1)**3
+    // 1 - ( x - 1)**2
+    //const score = (1.0 -  (prob - 1) ** 4) * 100.0;
+    //const score = (1.0 - (-prob + 1) ** 3) * 100.0;
+    //const score =  (- ((1.0 - prob) ** (1 / 3) - 1)) * 100.0
+    //const score = (-((1.0 - prob) ** (1 / 2)) + 1) * 100.0;
+    console.log((1.0 -  (prob - 1) ** 4) * 100.0);
+    console.log((1.0 - (-prob + 1) ** 3) * 100.0);
+    console.log( (- ((1.0 - prob) ** (1 / 2) - 1)) * 100.0);
+    console.log( (- ((1.0 - prob) ** (1 / 3) - 1)) * 100.0);
+    const score = (-((1.0 - prob) ** (1 / 3) - 1)) * 100.0;
+    setStatus(STATUS.SHOWING_SCORE);
+    setSelected({
+      kana: String.fromCharCode(parseInt(charCode, 16)),
+      prob: prob,
+      score: parseInt(score),
+    });
+    const result = await postImage('/api/predict', {
+      uploadfile: imageBlob,
+      charcode: charCode,
+      prob: prob,
+      score: score,
+    });
+  };
 
   return (
     <div>
@@ -51,6 +85,12 @@ const Main = () => {
           onClickBack={goBackHome}
         />
       ) : (
+        <ScoreDisplay
+          chara={selected.kana}
+          score={selected.score}
+          imageBlob={imageBlob}
+          onClickBack={goBackHome}
+        />
       )}
     </div>
   );
