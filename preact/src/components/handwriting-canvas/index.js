@@ -3,6 +3,7 @@ import style from './style';
 
 import Grid from '../grid';
 import Button from '../button';
+import { disableBodyScroll } from 'body-scroll-lock';
 
 //import CancelIcon from '@material-ui/icons/Cancel';
 //import CheckIcon from '@material-ui/icons/Check';
@@ -35,6 +36,7 @@ const HandwritingCanvas = (props) => {
       canvas.width  = size;
       canvas.height = size;
       resetCanvas();
+      disableBodyScroll(canvas);
     }
     setHasStarted(true);
   }, [hasStarted]);

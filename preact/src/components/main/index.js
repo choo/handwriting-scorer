@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks';
-import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
+import { enableBodyScroll, disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import {postImage} from '../../utils/ajax';
 
@@ -24,6 +24,7 @@ const Main = () => {
 
   const submitImage = async (imgBlob) => {
     enableBodyScroll(window.document.body);
+    clearAllBodyScrollLocks();
     setStatus(STATUS.SELECTING);
     setImageBlob(imgBlob);
     const result = await postImage('/api/predict', {uploadfile: imgBlob});
