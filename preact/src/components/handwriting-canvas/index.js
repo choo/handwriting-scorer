@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'preact/hooks';
-import style from './style';
 
 import Grid from '../grid';
 import Button from '../button';
@@ -126,7 +125,7 @@ const HandwritingCanvas = (props) => {
     <>
       <canvas
         ref={canvasRef}
-        class={style.canvas}
+        style={{border: '2px solid #000',}}
 
         /* events for PCs */
         onMouseDown={startDrawing}
