@@ -1,10 +1,12 @@
-import style from './style';
-
 /**
  * component only for centering
  */
 const Container = (props) => (
-  <div class={style.container} style={props.style}>
+  <div style={{
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    ...props.style,
+  }}>
     {props.children}
   </div>
 );

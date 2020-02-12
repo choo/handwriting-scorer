@@ -1,5 +1,6 @@
 import Grid from '../grid';
 import Button from '../button';
+import AnimationCounter from '../animation-counter'
 
 /*
 ScoreDisplay.propTypes = {
@@ -42,9 +43,11 @@ const ScoreDisplay = props => {
           <Grid flex={1/4}>
           </Grid>
           <Grid flex={2/4} style={{textAlign: 'center'}}>
-            <span style={{fontSize: '96px', color: '#ff0000'}}>
-              {props.score}
-            </span>
+            <AnimationCounter
+              initial={0}
+              target={props.score}
+              style={{fontSize: '96px', color: '#ff0000'}}
+            />
           </Grid>
           <Grid flex={1/4}>
             <span style={{
