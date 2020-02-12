@@ -24,6 +24,7 @@ const HandwritingCanvas = (props) => {
   const canvasRef = useRef(null)
   const [isDrawing, setIsDrawing] = useState(false);
   const [lineWeight, setLineWeight] = useState(pathConf.weight);
+  const [hasInitialText, setHasInitialText] = useState(null);
 
   // initialization of canvas DOM
   const [hasStarted, setHasStarted] = useState(false);
@@ -67,9 +68,15 @@ const HandwritingCanvas = (props) => {
 
   /* functions related canvas drawing */
   const startDrawing = e => {
-    setIsDrawing(true);
+    const canvas = canvasRef.current;
     const ctx = getContext();
     const [x, y] = getPosition(e);
+    if (hasInitialText) {
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      setHasInitialText(false);
+    }
+    setIsDrawing(true);
     ctx.beginPath();
     ctx.setLineDash([]);
     ctx.moveTo(x, y);
@@ -98,27 +105,27 @@ const HandwritingCanvas = (props) => {
       props.onScore(blob);
     });
   };
+
   const resetCanvas = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
+
     // ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // /* write dash line */
-    // ctx.lineWidth = 1;
-    // ctx.beginPath();
-    // ctx.setLineDash([2, 2]);
-    // ctx.moveTo(0, canvasSize / 2);
-    // ctx.lineTo(canvasSize, canvasSize / 2);
-    // ctx.stroke();
-
-    // ctx.beginPath();
-    // ctx.setLineDash([2, 2]);
-    // ctx.moveTo(canvasSize / 2, 0);
-    // ctx.lineTo(canvasSize / 2, canvasSize);
-    // ctx.stroke();
-
+    if (hasInitialText === null) {
+      const texts = ['文字をこの枠内に書いて', '採点ボタンをクリック！']
+      const x = (canvas.width  / 2);
+      const y = (canvas.height / 2);
+      ctx.font = "18px 'M PLUS Rounded 1c'";
+      ctx.fillStyle = '#aaa';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'center';
+      ctx.fillText(texts[0], x, y - 20);
+      ctx.fillText(texts[1], x, y + 20);
+      setHasInitialText(true);
+    }
   };
 
   return (
