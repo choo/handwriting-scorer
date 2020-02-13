@@ -1,6 +1,5 @@
 import { useState } from 'preact/hooks';
 
-import style from './style.css';
 import hamburger from './hamburger.css';
 import Logo from '../../assets/logo_00.png'
 
@@ -10,8 +9,13 @@ const Header = (props) => {
     setActive(!isActive);
   };
   return (
-    <header class={style.header}>
-      <img src={Logo} height={72} />
+    <header style={{
+      height: '68px',
+      paddingBottom: '8px',
+      display: 'flex',
+      justifyContent: 'space-between',
+    }}>
+      <img src={Logo} height={64} />
       <button type='button'
         class={
           hamburger.hamburger + " " +
