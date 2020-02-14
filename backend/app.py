@@ -15,7 +15,7 @@ app = Flask(__name__, static_folder=STATIC_DIR)
 model = Model()
 model.setup()
 
-GCS_BUCKET_NAME = 'handwriting-test-00'
+GCS_BUCKET_NAME = 'handwriting-test-00' # if not exist, error occurs
 gcs_utils = GCSUtils()
 
 
@@ -70,7 +70,7 @@ def uploadImage():
     prob  = float(request.form.get('prob', 0.0))
     score = float(request.form.get('score', 0.0))
 
-    dst_name = '{}_{}_{}.png'.format(session_id, char_code, time_suffix)
+    dst_name = '{}/{}/{}.png'.format(session_id, char_code, time_suffix)
     gcs_utils.upload_by_file(GCS_BUCKET_NAME, image,
             dst_name, {'score': score, 'prob': prob})
     return make_response(jsonify({
