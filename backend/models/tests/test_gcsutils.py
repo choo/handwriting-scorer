@@ -28,3 +28,13 @@ class TestGCSUtils(TestCase):
             gcs_utils.upload_by_file(TEST_BUCKET_NAME, f,
                     'sample_test_stream_01.png', {'hoge': 'fuga'})
 
+    def test_list_all_blobs(self):
+        gcs_utils = GCSUtils()
+        blobs = gcs_utils.list_all_blobs(TEST_BUCKET_NAME)
+        for blob in blobs:
+            print(blob)
+
+        prefix = 'sample_test'
+        blobs = gcs_utils.list_all_blobs(TEST_BUCKET_NAME, prefix=prefix)
+        for blob in blobs:
+            print(blob)
