@@ -15,7 +15,7 @@ class TestGCSUtils(TestCase):
 
     #def test_create_bucket(self):
     #    gcs_utils = GCSUtils()
-    #    gcs_utils.create_bucket()
+    #    gcs_utils.create_bucket('handwriting-test-0')
 
     def test_upload_filepath(self):
         gcs_utils = GCSUtils()
@@ -31,10 +31,12 @@ class TestGCSUtils(TestCase):
     def test_list_all_blobs(self):
         gcs_utils = GCSUtils()
         blobs = gcs_utils.list_all_blobs(TEST_BUCKET_NAME)
+        print('-------- all objects ---------- ')
         for blob in blobs:
             print(blob)
 
-        prefix = 'sample_test'
+        prefix = 'sample_test_stream'
+        print('--------- with prefix "{}" -------'.format(prefix))
         blobs = gcs_utils.list_all_blobs(TEST_BUCKET_NAME, prefix=prefix)
         for blob in blobs:
             print(blob)

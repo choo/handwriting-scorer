@@ -15,7 +15,8 @@ app = Flask(__name__, static_folder=STATIC_DIR)
 model = Model()
 model.setup()
 
-GCS_BUCKET_NAME = 'handwriting-test-00' # if not exist, error occurs
+# FIXME: define bucket name as env variable
+GCS_BUCKET_NAME = 'handwriting-stg-00' # if not exist, error occurs
 gcs_utils = GCSUtils()
 
 
