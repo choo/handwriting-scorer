@@ -64,7 +64,7 @@ const Main = () => {
       prob: prob,
       score: parseInt(score),
     });
-    const result = await postImage('/api/predict', {
+    const result = await postImage('/api/upload', {
       uploadfile: imageBlob,
       charcode: charCode,
       prob: prob,
