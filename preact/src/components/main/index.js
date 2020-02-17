@@ -46,17 +46,6 @@ const Main = () => {
         break;
       }
     }
-    // 1 - ( x - 1)**4
-    // 1 - (-x + 1)**3
-    // 1 - ( x - 1)**2
-    //const score = (1.0 -  (prob - 1) ** 4) * 100.0;
-    //const score = (1.0 - (-prob + 1) ** 3) * 100.0;
-    //const score =  (- ((1.0 - prob) ** (1 / 3) - 1)) * 100.0
-    //const score = (-((1.0 - prob) ** (1 / 2)) + 1) * 100.0;
-    console.log((1.0 -  (prob - 1) ** 4) * 100.0);
-    console.log((1.0 - (-prob + 1) ** 3) * 100.0);
-    console.log( (- ((1.0 - prob) ** (1 / 2) - 1)) * 100.0);
-    console.log( (- ((1.0 - prob) ** (1 / 3) - 1)) * 100.0);
     const score = (-((1.0 - prob) ** (1 / 3) - 1)) * 100.0;
     setStatus(STATUS.SHOWING_SCORE);
     setSelected({
