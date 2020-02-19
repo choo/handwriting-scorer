@@ -12,6 +12,7 @@ const Grid = (props) => {
     margin : props.m,
     padding: props.p,
     flex: props.flex,
+    flexWrap: props.flexWrap,
     alignItems: props.alignItems, // center, baseline, ...
     justifyContent: props.justify,
     justifyItems: props.justify,

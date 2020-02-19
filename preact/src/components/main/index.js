@@ -2,11 +2,11 @@ import { useState } from 'preact/hooks';
 import { enableBodyScroll, disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import {postImage} from '../../utils/ajax';
+import {classifyChars} from '../../utils/utils';
 
 import HandwritingCanvas from '../handwriting-canvas';
 import ResultsSelection from '../results-selection';
 import ScoreDisplay from '../score-display';
-import {NUM_DISPLAY} from '../../utils/const';
 
 const STATUS = {
   WRITING: 0,
@@ -69,7 +69,7 @@ const Main = () => {
         />
       ) : status === STATUS.SELECTING ? (
         <ResultsSelection
-          predicted={predicted.slice(0, NUM_DISPLAY)}
+          predicted={classifyChars(predicted)}
           imageBlob={imageBlob}
           onSelectKana={selectKana}
           onClickBack={goBackHome}
