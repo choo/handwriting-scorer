@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 import {isKana, shuffleArray} from '../../utils/utils';
-import {hiragana, katakana, alphaNum} from '../../utils/const';
+import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../utils/const';
 
 import Grid from '../grid';
 import Button from '../button';
@@ -81,18 +81,6 @@ const SelectSuggestion = props => {
 
 const SelectCustom = props => {
   const [charType, setCharType] = useState('hira');
-  const TYPES = [
-    {display: 'ひら',   val: 'hira'},
-    {display: 'カタ',   val: 'kata'},
-    {display: '漢字',   val: 'kanji'},
-    {display: '英数字', val: 'alpha'},
-  ];
-  const CHARS = {
-    'hira' : hiragana,
-    'kata' : katakana,
-    'kanji': [],
-    'alpha': alphaNum,
-  };
   return (
     <>
       <Grid container style={{
@@ -102,18 +90,18 @@ const SelectCustom = props => {
         border: '1px solid',
         height: '36px',
       }}>
-        {TYPES.map(t => (
+        {CHAR_TYPES.map(t => (
           <Grid flex={1}>
-            <button onClick={() => setCharType(t.val)}
+            <button onClick={() => setCharType(t)}
               style={{
                 width: '100%',
                 height: '100%',
                 //border: '1px solid',
-                backgroundColor: charType === t.val ? '#ffc2e3' : '#fff',
+                backgroundColor: charType === t ? '#ffc2e3' : '#fff',
                 fontSize: '14px',
               }}
             >
-              {t.display}
+              {CHAR_DISPLAYS[t]}
             </button>
           </Grid>
         ))}
