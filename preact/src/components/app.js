@@ -4,6 +4,7 @@ import Header from './header';
 import Container from './container';
 import Main from './main';
 import init from '../utils/init';
+import {MAX_WIDTH, WINDOW_PADDING} from '../utils/layout';
 
 export default class App extends Component {
   constructor() {
@@ -14,8 +15,8 @@ export default class App extends Component {
   render() {
     return (
       <Container style={{
-        padding: '0 15px',
-        maxWidth: '480px'}}
+        padding: `0 ${WINDOW_PADDING}px`,
+        maxWidth: `${MAX_WIDTH}px`}}
       >
         <Header />
         <Main />
