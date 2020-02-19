@@ -72,8 +72,8 @@ def uploadImage():
     score = float(request.form.get('score', 0.0))
 
     dst_name = '{}/{}/{}.png'.format(session_id, char_code, time_suffix)
-    gcs_utils.upload_by_file(GCS_BUCKET_NAME, image,
-            dst_name, {'score': score, 'prob': prob})
+    metadata = {'score': score, 'prob': prob}
+    gcs_utils.upload_by_file(GCS_BUCKET_NAME, image, dst_name, metadata)
     return make_response(jsonify({
         'status': 'ok',
     }))
