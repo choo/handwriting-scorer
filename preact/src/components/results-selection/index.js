@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks';
-import {isKana, shuffleArray} from '../../utils/utils';
+import {shuffleArray} from '../../utils/utils';
 import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../utils/const';
+import {NUM_DISPLAY} from '../../utils/const';
 
 import Grid from '../grid';
 import Button from '../button';
@@ -49,25 +50,36 @@ const ResultsSelection = props => {
 const SelectSuggestion = props => {
   return (
     <>
-      <Grid container alignItems='center'>
-      {shuffleArray(props.predicted).map(result => {
-        const kanaCode = result[0];
-        return (
-          <Grid flex={1/6} m='2px' key={kanaCode}>
-            <Button
-              outlined
-              style={{minWidth: '50px'}}
-              onClick={(e) => props.onSelectKana(kanaCode)}
-            >
-              <span>
-              {String.fromCharCode(parseInt(kanaCode, 16))}
-              {/* {' ' + result[1].toFixed(4)} {/* probablity */}
-              </span>
-            </Button>
+      {props.predicted.map((obj, idx) => {
+        const charType = obj[0];
+        const chars = obj[1];
+        return chars.length > 0 && (
+          <Grid container key={idx}>
+            <Grid flex={1/4}>
+              <span>{charType}</span>
+            </Grid>
+            <Grid container flex={3/4}  flexWrap={'wrap'}>
+            {shuffleArray(chars.slice(0, NUM_DISPLAY)).map(result => {
+              const kanaCode = result[0];
+              return (
+                <Grid flex={1/6} m='2px' key={kanaCode}>
+                  <Button
+                    outlined
+                    style={{minWidth: '50px'}}
+                    onClick={(e) => props.onSelectKana(kanaCode)}
+                  >
+                    <span>
+                    {String.fromCharCode(parseInt(kanaCode, 16))}
+                    {/* {' ' + result[1].toFixed(4)} {/* probablity */}
+                    </span>
+                  </Button>
+                </Grid>
+              )
+            })}
+            </Grid>
           </Grid>
         )
       })}
-      </Grid>
 
       <Grid container justify='flex-end'  alignItems="flex-end" m='4px 0'>
         <Button outlined
