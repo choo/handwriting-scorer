@@ -56,7 +56,7 @@ const SelectSuggestion = props => {
         return chars.length > 0 && (
           <Grid container key={idx}>
             <Grid flex={1/4}>
-              <span>{charType}</span>
+              <span>{CHAR_DISPLAYS[charType]}</span>
             </Grid>
             <Grid container flex={3/4}  flexWrap={'wrap'}>
             {shuffleArray(chars.slice(0, NUM_DISPLAY)).map(result => {
