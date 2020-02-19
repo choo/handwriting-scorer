@@ -59,7 +59,6 @@ const classifyChars = chars => {
   for (const [charCode, _] of chars) {
     const c = String.fromCharCode(parseInt(charCode, 16))
     const type = _classifyChar(c);
-    console.log(c, _, type)
     if (type) {
       ret[type].push([charCode, _]);
     }
