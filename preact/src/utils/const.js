@@ -1,5 +1,12 @@
-export const NUM_DISPLAY = 5;
-export const hiragana = [
+export const NUM_DISPLAY = 4;
+export const CHAR_TYPES = ['hira', 'kata', 'kanji', 'alpha'];
+export const CHAR_DISPLAYS = {
+  'hira': 'ひらがな',
+  'kata': 'カタカナ',
+  'kanji': '漢字',
+  'alpha': '英数字',
+};
+const hiragana = [
   ['あ', 'い', 'う', 'え', 'お'],
   ['か', 'き', 'く', 'け', 'こ'],
   ['さ', 'し', 'す', 'せ', 'そ'],
@@ -21,7 +28,7 @@ export const hiragana = [
   ['ゃ',   '', 'ゅ',   '', 'ょ'],
 ];
 
-export const katakana = [
+const katakana = [
   ['ア', 'イ', 'ウ', 'エ', 'オ'],
   ['カ', 'キ', 'ク', 'ケ', 'コ'],
   ['サ', 'シ', 'ス', 'セ', 'ソ'],
@@ -43,7 +50,7 @@ export const katakana = [
   ['ャ',   '', 'ュ',   '', 'ョ'],
 ];
 
-export const alphaNum = [
+const alphaNum = [
   //['',   '',   '',   '',   ''],
   ['1',   '2',   '3',   '4',   '5'],
   ['6',   '7',   '8',   '9',   '10'],
@@ -59,6 +66,11 @@ export const alphaNum = [
   ['p',   'q',   'r',   's',   't'],
   ['u',   'v',   'w',   'x',   'y'],
   ['z',   '',   '',   '',   ''],
-
-
 ];
+export const CHARS = {
+  'hira': hiragana,
+  'kata': katakana,
+  'kanji': [],
+  'alpha': alphaNum,
+};
+
