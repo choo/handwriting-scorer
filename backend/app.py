@@ -35,7 +35,7 @@ def _get_session_id(cookie_name):
     return session_id
 
 
-def _extract_uploaded_image():
+def _extract_attached_image():
     if 'uploadfile' not in request.files:
         return make_response(jsonify({'status':'err. uploadfile is required.'}))
 
@@ -54,7 +54,7 @@ def _extract_uploaded_image():
 
 @app.route('/api/predict', methods=['POST'])
 def predictResult():
-    uploaded = _extract_uploaded_image()
+    uploaded = _extract_attached_image()
     predicted = model.predict(uploaded)
     return make_response(jsonify({
         'status': 'ok',
@@ -66,7 +66,7 @@ def predictResult():
 def uploadImage():
     time_suffix = time.strftime('%Y%m%d-%H%M%S')
     session_id = _get_session_id(SESSION_COOKIE)
-    image = _extract_uploaded_image()
+    image = _extract_attached_image()
     char_code = request.form.get('charcode')
     prob  = float(request.form.get('prob', 0.0))
     score = float(request.form.get('score', 0.0))
