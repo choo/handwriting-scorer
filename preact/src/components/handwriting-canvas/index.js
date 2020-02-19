@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'preact/hooks';
 import Grid from '../grid';
 import Button from '../button';
 import { disableBodyScroll } from 'body-scroll-lock';
+import {CANVAS_BORDER} from '../../utils/layout';
 
 //import CancelIcon from '@material-ui/icons/Cancel';
 //import CheckIcon from '@material-ui/icons/Check';
@@ -11,7 +12,6 @@ import Wording   from '../../utils/lang';
 //import LineWeightButton from './LineWeightButton';
 
 const LANG = 'ja'
-const canvasBorder = 2;
 
 const pathConf = {
   weight: 9,
@@ -32,7 +32,7 @@ const HandwritingCanvas = (props) => {
     if (!hasStarted) {
       const canvas = canvasRef.current;
       const wrapper = canvas.parentElement;
-      const size = wrapper.offsetWidth - (canvasBorder) * 2;
+      const size = wrapper.offsetWidth - (CANVAS_BORDER) * 2;
       canvas.width  = size;
       canvas.height = size;
       resetCanvas();
