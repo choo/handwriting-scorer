@@ -29,6 +29,35 @@ const Header = (props) => {
           <span class={hamburger.hamburgerInner}></span>
         </span>
       </button>
+        <div class={`${hamburger.menuWrapper} ${isActive ? hamburger.isActive : ''}`}
+            style={{top: `${HEADER_HEIGHT}px`}}
+        >
+          <div style={{
+            minWidth: '100%',
+            overflow: 'auto',
+            boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+          }}>
+            <a href="#" style={{
+              color: '#000',
+              display: 'block',
+              padding: '20px',
+              textDecoration: 'none',
+              cursor: 'pointer',
+              borderBottom: '1px solid #bbb',
+            }}>
+              Link 1
+            </a>
+            <a href="#" style={{
+              color: '#000',
+              display: 'block',
+              padding: '20px',
+              textDecoration: 'none',
+              cursor: 'pointer',
+            }}>
+              Link 2
+            </a>
+          </div>
+        </div>
     </header>
   );
 };
