@@ -102,3 +102,31 @@
     opacity: 0; }
   .hamburgerSliderR.isActive .hamburgerInner::after {
     transform: translate3d(0, -24px, 0) rotate(90deg); }
+
+
+/*
+ * Menu
+ */
+.menuWrapper {
+  position: absolute;
+  /* top: 80px; */
+  /* should be defined as style attr according to the height of header */
+  left: 0px;
+  width: 100%;
+  z-index: 10;
+  background-color: #fff;
+  display: None;
+  /*
+  max-height: 0px;
+  transition: all 500ms ease-in-out;
+  */
+}
+
+.menuWrapper.isActive {
+  display: block;
+  /*
+  max-height: 200px;
+  background-color: #0ff;
+  visibility: visible;
+  */
+}
