@@ -2,6 +2,7 @@ import { useState } from 'preact/hooks';
 
 import hamburger from './hamburger.css';
 import Logo from '../../assets/logo_00.png'
+import {HEADER_HEIGHT} from '../../utils/layout';
 
 const Header = (props) => {
   const [isActive, setActive] = useState(false);
@@ -10,7 +11,7 @@ const Header = (props) => {
   };
   return (
     <header style={{
-      height: '68px',
+      height: `${HEADER_HEIGHT}px`,
       paddingBottom: '8px',
       display: 'flex',
       justifyContent: 'space-between',
