@@ -50,6 +50,24 @@ def _extract_attached_image():
     return uploaded
 
 
+def _list_achivements(session_id):
+    ret = {}
+    blobs = gcs_utils.list_all_blobs(GCS_BUCKET_NAME, prefix=session_id)
+    for blob in blobs:
+        name = blob.name
+        paths = name.split('/')
+        char_code = paths[1]
+        timestamp = os.path.splitext(paths[2])[0]
+        metadata  = blob.metadata
+        score = int(float(metadata['score']))
+        if not char_code in ret:
+            ret[char_code] = {'num': 0, 'total': 0, 'max': 0}
+        ret[char_code]['num'] += 1
+        ret[char_code]['max']  = max(ret[char_code]['max'], score)
+        ret[char_code]['total'] += score
+    return ret
+
+
 ''' API definitions '''
 
 @app.route('/api/predict', methods=['POST'])
@@ -78,6 +96,15 @@ def uploadImage():
         'status': 'ok',
     }))
 
+
+@app.route('/api/achivements', methods=['GET'])
+def fetch_summary():
+    session_id = _get_session_id(SESSION_COOKIE)
+    achivements = _list_achivements(session_id)
+    return make_response(jsonify({
+        'status': 'ok',
+        'achivements': achivements,
+    }))
 
 ''' static html '''
 
