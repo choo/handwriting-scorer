@@ -1,6 +1,6 @@
 import Logo from '../../assets/logo_00.png'
 import Hambuger from '../hamburger';
-import {HEADER_HEIGHT} from '../../utils/layout';
+import {HEADER_HEIGHT, MAX_WIDTH} from '../../utils/layout';
 
 const Header = (props) => {
   const height = `${HEADER_HEIGHT}px`
@@ -13,7 +13,7 @@ const Header = (props) => {
     }}>
       <img src={Logo} height={64} />
 
-      <Hambuger height={height}>
+      <Hambuger width={MAX_WIDTH} height={height}>
         <div style={{
           minWidth: '100%',
           overflow: 'auto',
