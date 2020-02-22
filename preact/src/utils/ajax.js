@@ -1,5 +1,23 @@
 import axios from 'axios';
 
+const doAjax = (url, params, callback, errorCallback) => {
+  axios.get(url, {params: params}).then(
+    (result) => {
+      if (callback) {
+        callback(result.data);
+      }
+    }
+  ).catch(
+    (error) => {
+      if (errorCallback) {
+        errorCallback(error);
+      } else {
+        console.log(error);
+      }
+    }
+  );
+};
+
 const postImage = async (url, params) => {
   const form = new FormData();
   for (const [k, v] of Object.entries(params)) {
@@ -23,4 +41,4 @@ const postImage = async (url, params) => {
   }
 };
 
-export {postImage}
+export {doAjax, postImage}
