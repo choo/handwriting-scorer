@@ -4,6 +4,24 @@ const shuffleArray = ary => {
   return ret;
 };
 
+const summarizeAchivements = (writtenInfo) => {
+  const ret = {
+    numChars: Object.keys(writtenInfo).length,
+    totalScore: 0,
+    totalNum: 0,
+    byType: {
+    }
+  };
+  for (const [charCode, info] of Object.entries(writtenInfo)) {
+    ret.totalScore += info.total;
+    ret.totalNum   += info.num;
+    // byType classification
+  }
+  ret.averageScore = ret.totalScore / ret.totalNum;
+  return ret;
+};
+
+/* TODO: extract utility module as char-utils.js */
 const NUM_MIN  = '0' // '\u0030'
 const NUM_MAX  = '9' // '\u0039'
 const LATIN_UPPER_MIN = 'A' // '\u0041'
@@ -66,4 +84,4 @@ const classifyChars = chars => {
   return Object.entries(ret);
 };
 
-export {shuffleArray, classifyChars};
+export {shuffleArray, classifyChars, summarizeAchivements};
