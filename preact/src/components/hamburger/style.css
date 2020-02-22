@@ -111,8 +111,7 @@
   position: absolute;
   /* top: 80px; */
   /* should be defined as style attr according to the height of header */
-  left: 0px;
-  width: 100%;
+  margin: 0 auto;
   z-index: 10;
   background-color: #fff;
   display: None;

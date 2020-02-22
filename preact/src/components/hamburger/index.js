@@ -21,7 +21,7 @@ const Hamburger = (props) => {
         </span>
       </button>
       <div class={`${style.menuWrapper} ${isActive ? style.isActive : ''}`}
-          style={{top: props.height}}
+          style={{top: props.height, width: props.width}}
       >
         {props.children}
       </div>
