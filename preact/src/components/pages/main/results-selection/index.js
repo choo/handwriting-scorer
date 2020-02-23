@@ -1,12 +1,12 @@
 import { useState } from 'preact/hooks';
-import {shuffleArray} from '../../utils/utils';
-import {CHAR_DISPLAYS} from '../../utils/const';
-import {NUM_DISPLAY} from '../../utils/const';
+import {shuffleArray} from '../../../../utils/utils';
+import {CHAR_DISPLAYS} from '../../../../utils/const';
+import {NUM_DISPLAY} from '../../../../utils/const';
 
-import CharList from '../charlist';
+import CharList from '../../../molecules/charlist';
 
-import Grid from '../grid';
-import Button from '../button';
+import Grid from '../../../atoms/grid';
+import Button from '../../../atoms/button';
 
 const ResultsSelection = props => {
   const [isSuggesting, setSuggesting] = useState(true);

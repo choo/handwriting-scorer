@@ -1,7 +1,7 @@
-import Grid from '../grid';
-import Button from '../button';
+import Grid from '../../atoms/grid';
+import Button from '../../atoms/button';
 import style from './style.css';
-import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../utils/const';
+import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../../utils/const';
 import {clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 

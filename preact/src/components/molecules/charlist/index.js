@@ -1,9 +1,9 @@
 import { useState } from 'preact/hooks';
 
-import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../utils/const';
+import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../../utils/const';
 
-import Grid from '../grid';
-import Button from '../button';
+import Grid from '../../atoms/grid';
+import Button from '../../atoms/button';
 
 
 const CharList = props => {
