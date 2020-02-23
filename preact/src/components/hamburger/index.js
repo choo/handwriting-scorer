@@ -20,8 +20,10 @@ const Hamburger = (props) => {
           <span class={style.hamburgerInner}></span>
         </span>
       </button>
-      <div class={`${style.menuWrapper} ${isActive ? style.isActive : ''}`}
-          style={{top: props.height, width: props.width}}
+      <div
+        class={`${style.menuWrapper} ${isActive ? style.isActive : ''}`}
+        style={{top: props.height, width: props.width}}
+        onClick={toggleMenu}
       >
         {props.children}
       </div>
