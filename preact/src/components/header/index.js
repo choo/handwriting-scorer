@@ -11,7 +11,9 @@ const Header = (props) => {
       display: 'flex',
       justifyContent: 'space-between',
     }}>
-      <img src={Logo} height={64} />
+      <a href="/" native>
+        <img src={Logo} height={64} />
+      </a>
 
       <Hambuger width={MAX_WIDTH} height={height}>
         <div style={{
@@ -19,7 +21,7 @@ const Header = (props) => {
           overflow: 'auto',
           boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
         }}>
-          <a href="#" style={{
+          <a href="/" style={{
             color: '#000',
             display: 'block',
             padding: '20px',
@@ -27,7 +29,17 @@ const Header = (props) => {
             cursor: 'pointer',
             borderBottom: '1px solid #bbb',
           }}>
-            Link 1
+            Top
+          </a>
+          <a href="/record" style={{
+            color: '#000',
+            display: 'block',
+            padding: '20px',
+            textDecoration: 'none',
+            cursor: 'pointer',
+            borderBottom: '1px solid #bbb',
+          }}>
+            My Records
           </a>
           <a href="#" style={{
             color: '#000',
@@ -36,7 +48,7 @@ const Header = (props) => {
             textDecoration: 'none',
             cursor: 'pointer',
           }}>
-            Link 2
+            About
           </a>
         </div>
       </Hambuger>
