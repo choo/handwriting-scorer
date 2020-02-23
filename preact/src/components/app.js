@@ -1,9 +1,11 @@
 import { Component } from 'preact';
+import Router from 'preact-router';
 
 import Header from './header';
 import Container from './container';
 import Main from './main';
 import init from '../utils/init';
+import Record from './record';
 import {summarizeAchivements} from '../utils/utils';
 import {doAjax} from '../utils/ajax';
 import {MAX_WIDTH, WINDOW_PADDING} from '../utils/layout';
@@ -32,7 +34,10 @@ export default class App extends Component {
         maxWidth: `${MAX_WIDTH}px`}}
       >
         <Header />
-        <Main />
+        <Router>
+          <Main path="/" />
+          <Record path="/record" achivements={this.state.achivements} />
+        </Router>
       </Container>
     );
   }

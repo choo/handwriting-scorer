@@ -1,0 +1,24 @@
+.tableTitle {
+  margin-bottom: 0px;
+}
+
+table.recTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td.head {
+  width: 35%;
+}
+table.recTable td.mid {
+  width: 24%;
+  border-right: 0px;
+}
+table.recTable td.last {
+  border-left: 0px;
+}
+
+table.recTable td {
+  border: 1px solid black;
+  padding: 6px;
+}
