@@ -35,7 +35,9 @@ class GCSUtils(object):
     def list_all_blobs(self, bucket_name, prefix=None, delimiter=None):
         ''' returned value is iterator  '''
         ''' can be wildcard used ?? wildcard can be used in CUI tool gsutils.
-            https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames '''
+            https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames
+            https://github.com/googleapis/google-cloud-python/issues/4154
+        '''
         blobs = self.storage_client.list_blobs(bucket_name, prefix=prefix, delimiter=delimiter)
         #for blob in blobs:
         #    print(blob.name)
