@@ -38,10 +38,13 @@ const CharList = props => {
         {CHARS[charType].map((row, i) => {
           return (
           <Grid container key={i} justify='space-between'>
+            <Grid flex={1/12}>
+              <div></div>
+            </Grid>
             {row.map((c, j) => {
               const kanaCode = '0x' + c.charCodeAt(0).toString(16)
               return (
-                <Grid flex={1/6} p='2px 3px' key={j}>
+                <Grid flex={1/6} p='2px 2px' key={j}>
                   {c ? (
                     <Button outlined
                       style={{minWidth:'48px'}}
@@ -53,6 +56,9 @@ const CharList = props => {
                 </Grid>
               )
             })}
+            <Grid flex={1/12}>
+              <div></div>
+            </Grid>
           </Grid>
           )
         })}
