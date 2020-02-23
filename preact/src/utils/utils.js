@@ -1,3 +1,5 @@
+import {CHAR_TYPES} from './const';
+
 const shuffleArray = ary => {
   const ret = [...ary]
   ret.sort(() => Math.random() - 0.5);
@@ -9,15 +11,36 @@ const summarizeAchivements = (writtenInfo) => {
     numChars: Object.keys(writtenInfo).length,
     totalScore: 0,
     totalNum: 0,
-    byType: {
-    }
+    averageScore: 0,
+    byType: {},
   };
+  for (const type of CHAR_TYPES) {
+    ret.byType[type] = {
+      numChars: 0,
+      totalNum: 0,
+      totalScore: 0,
+      averageScore: 0,
+      byChar: {},
+    };
+  }
   for (const [charCode, info] of Object.entries(writtenInfo)) {
     ret.totalScore += info.total;
     ret.totalNum   += info.num;
-    // byType classification
+    const c = String.fromCharCode(parseInt(charCode, 16));
+    const type = _classifyChar(c);
+    ret.byType[type].numChars += 1;
+    ret.byType[type].totalNum += info.num;
+    ret.byType[type].totalScore += info.total;
+    ret.byType[type].byChar[c] = info;
   }
-  ret.averageScore = ret.totalScore / ret.totalNum;
+  if (ret.totalNum > 0) {
+    ret.averageScore = ret.totalScore / ret.totalNum;
+  }
+  for (const info of Object.values(ret.byType)) {
+    if (info.totalNum > 0) {
+      info.averageScore = info.totalScore / info.totalNum;
+    }
+  }
   return ret;
 };
 
