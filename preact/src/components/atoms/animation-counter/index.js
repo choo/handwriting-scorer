@@ -27,10 +27,10 @@ const AnimationCounter = props => {
         setValue(next)
       } else {
         setValue(target)
-        window.clearInterval(timer);
+        clearInterval(timer);
       }
     }, interval);
-    return () => window.clearInterval(timer);
+    return () => clearInterval(timer);
   }, [value]);
 
   return (
