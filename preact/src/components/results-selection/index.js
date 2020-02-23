@@ -30,13 +30,11 @@ const ResultsSelection = props => {
         <SelectSuggestion
           predicted={props.predicted}
           onSelectKana={props.onSelectKana}
-          onClickBack={props.onClickBack}
           onSelectCustom={setCustom}
         />
       ) : (
         <SelectCustom
           onSelectKana={props.onSelectKana}
-          onClickBack={props.onClickBack}
         />
       )}
       <Grid m='12px 0 16px'>
