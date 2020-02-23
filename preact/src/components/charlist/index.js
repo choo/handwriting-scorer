@@ -46,12 +46,21 @@ const CharList = props => {
               return (
                 <Grid flex={1/6} p='2px 2px' key={j}>
                   {c ? (
-                    <Button outlined
-                      style={{minWidth:'48px'}}
-                      onClick={(e) => props.onSelectKana(kanaCode)}
-                    >
-                      <span>{c}</span>
-                    </Button>
+                    <>
+                      {props.button || (
+                        <Button outlined
+                          onClick={(e) => props.onSelectKana(kanaCode)}
+                          style={{
+                            minWidth: '48px',
+                            backgroundColor:
+                              (props.getButtonColor ?
+                                props.getButtonColor(charType, c) : ''),
+                          }}
+                        >
+                          <span>{c}</span>
+                        </Button>
+                      )}
+                    </>
                   ) : null}
                 </Grid>
               )

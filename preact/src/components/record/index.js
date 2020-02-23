@@ -1,3 +1,5 @@
+import Grid from '../grid';
+import Button from '../button';
 import style from './style.css';
 import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../utils/const';
 import {clearAllBodyScrollLocks } from 'body-scroll-lock';
@@ -19,9 +21,13 @@ const Record = (props) => {
             achivements={res} />
         );
       })}
-    <div>
-      <span>{JSON.stringify(res)}</span>
-    </div>
+      <Grid container justify="flex-end" m='20px 0 0'>
+        <Grid flex={2/3}>
+          <a href="/record/detail" style={{textDecoration: 'none'}}>
+            <Button outlined>書いた文字の一覧</Button>
+          </a>
+        </Grid>
+      </Grid>
     </>
   );
 };
