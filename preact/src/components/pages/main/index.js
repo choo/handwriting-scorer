@@ -14,7 +14,9 @@ const STATUS = {
   SHOWING_SCORE: 2,
 };
 
-disableBodyScroll(window.document.body);
+if (typeof window !== "undefined") {
+  disableBodyScroll(window.document.body);
+}
 
 const Main = () => {
   const [status, setStatus] = useState(STATUS.WRITING);
@@ -23,7 +25,9 @@ const Main = () => {
   const [selected, setSelected] = useState({});
 
   const submitImage = async (imgBlob) => {
-    enableBodyScroll(window.document.body);
+    if (typeof window !== "undefined") {
+      enableBodyScroll(window.document.body);
+    }
     clearAllBodyScrollLocks();
     setStatus(STATUS.SELECTING);
     setImageBlob(imgBlob);
@@ -34,8 +38,10 @@ const Main = () => {
   };
   const goBackHome = () => {
     setStatus(STATUS.WRITING);
-    disableBodyScroll(window.document.body);
     setPredicted([]);
+    if (typeof window !== "undefined") {
+      disableBodyScroll(window.document.body);
+    }
   };
 
   const selectKana = async (charCode) => {

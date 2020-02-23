@@ -20,7 +20,7 @@ const ScoreDisplay = props => {
         >
           <Grid flex={5/12}>
             <img style={{width: '100%'}}
-              src={window.URL.createObjectURL(props.imageBlob)}
+              src={URL.createObjectURL(props.imageBlob)}
               border={'1'}
               alt={'canvas content'}
             />
