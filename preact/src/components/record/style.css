@@ -1,5 +1,5 @@
 .tableTitle {
-  margin-bottom: 0px;
+  margin: 12px 0 0;
 }
 
 table.recTable {
@@ -8,10 +8,10 @@ table.recTable {
 }
 
 td.head {
-  width: 35%;
+  width: 33%;
 }
 table.recTable td.mid {
-  width: 24%;
+  width: 30%;
   border-right: 0px;
 }
 table.recTable td.last {
