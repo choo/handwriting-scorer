@@ -1,12 +1,12 @@
 import { useState } from 'preact/hooks';
 import { enableBodyScroll, disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
-import {postImage} from '../../utils/ajax';
-import {classifyChars} from '../../utils/utils';
+import {postImage} from '../../../utils/ajax';
+import {classifyChars} from '../../../utils/utils';
 
-import HandwritingCanvas from '../handwriting-canvas';
-import ResultsSelection from '../results-selection';
-import ScoreDisplay from '../score-display';
+import HandwritingCanvas from './handwriting-canvas';
+import ResultsSelection from './results-selection';
+import ScoreDisplay from './score-display';
 
 const STATUS = {
   WRITING: 0,

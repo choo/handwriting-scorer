@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect } from 'preact/hooks';
 
-import Grid from '../grid';
-import Button from '../button';
+import Grid from '../../../atoms/grid';
+import Button from '../../../atoms/button';
 import { disableBodyScroll } from 'body-scroll-lock';
-import {CANVAS_BORDER} from '../../utils/layout';
+import {CANVAS_BORDER} from '../../../../utils/layout';
 
 //import CancelIcon from '@material-ui/icons/Cancel';
 //import CheckIcon from '@material-ui/icons/Check';
 
-import Wording   from '../../utils/lang';
+import Wording   from '../../../../utils/lang';
 //import LineWeightButton from './LineWeightButton';
 
 const LANG = 'ja'

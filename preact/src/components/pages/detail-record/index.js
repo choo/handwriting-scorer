@@ -1,6 +1,6 @@
-import Grid from '../grid';
-import Button from '../button';
-import CharList from '../charlist';
+import Grid from '../../atoms/grid';
+import Button from '../../atoms/button';
+import CharList from '../../molecules/charlist';
 
 const colorDef = [
   {min: 90, color: '#78ffa1'},

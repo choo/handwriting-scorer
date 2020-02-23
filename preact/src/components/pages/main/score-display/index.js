@@ -1,6 +1,6 @@
-import Grid from '../grid';
-import Button from '../button';
-import AnimationCounter from '../animation-counter'
+import Grid from '../../../atoms/grid';
+import Button from '../../../atoms/button';
+import AnimationCounter from '../../../atoms/animation-counter'
 
 /*
 ScoreDisplay.propTypes = {

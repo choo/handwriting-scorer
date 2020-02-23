@@ -1,12 +1,12 @@
 import { Component } from 'preact';
 import Router from 'preact-router';
 
-import Header from './header';
-import Container from './container';
-import Main from './main';
+import Header from './molecules/header';
+import Container from './atoms/container';
+import Main from './pages/main';
 import init from '../utils/init';
-import Record from './record';
-import DetailRecord from './detail-record';
+import Record from './pages/record';
+import DetailRecord from './pages/detail-record';
 import {summarizeAchivements} from '../utils/utils';
 import {doAjax} from '../utils/ajax';
 import {MAX_WIDTH, WINDOW_PADDING} from '../utils/layout';

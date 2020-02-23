@@ -1,6 +1,6 @@
-import Logo from '../../assets/logo_00.png'
-import Hambuger from '../hamburger';
-import {HEADER_HEIGHT, MAX_WIDTH} from '../../utils/layout';
+import Logo from '../../../assets/logo_00.png'
+import Hambuger from '../../atoms/hamburger';
+import {HEADER_HEIGHT, MAX_WIDTH} from '../../../utils/layout';
 
 const Header = (props) => {
   const height = `${HEADER_HEIGHT}px`
