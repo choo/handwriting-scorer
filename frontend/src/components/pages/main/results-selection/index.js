@@ -10,8 +10,8 @@ import Button from '../../../atoms/button';
 
 const ResultsSelection = props => {
   const [isSuggesting, setSuggesting] = useState(true);
-  const setCustom = () => {
-    setSuggesting(false);
+  const toggleCustom = () => {
+    setSuggesting(!isSuggesting);
   }
   return (
     <>
@@ -29,15 +29,32 @@ const ResultsSelection = props => {
       </Grid>
 
       {isSuggesting ? (
-        <SelectSuggestion
-          predicted={props.predicted}
-          onSelectKana={props.onSelectKana}
-          onSelectCustom={setCustom}
-        />
+        <>
+          <SelectSuggestion
+            predicted={props.predicted}
+            onSelectKana={props.onSelectKana}
+          />
+          <Grid container justify='flex-end' m='4px 0 8px' key={0}>
+            <Grid flex={3/4}>
+              <Button outlined onClick={toggleCustom}>
+                他の文字から選ぶ
+              </Button>
+            </Grid>
+          </Grid>
+        </>
       ) : (
-        <CharList
-          onSelectKana={props.onSelectKana}
-        />
+        <>
+          <Grid container justify='flex-end' m='4px 0 12px' key={1}>
+            <Grid flex={3/4}>
+              <Button outlined onClick={toggleCustom}>
+                提案された文字から選ぶ
+              </Button>
+            </Grid>
+          </Grid>
+          <CharList
+            onSelectKana={props.onSelectKana}
+          />
+        </>
       )}
       <Grid m='12px 0 16px'>
         <Button outlined onClick={props.onClickBack}>戻る</Button>
@@ -80,12 +97,6 @@ const SelectSuggestion = props => {
           </Grid>
         )
       })}
-
-      <Grid container justify='flex-end'  alignItems="flex-end" m='4px 0'>
-        <Button outlined
-          onClick={props.onSelectCustom}
-        >他の文字から選ぶ</Button>
-      </Grid>
     </>
   );
 };
