@@ -1,3 +1,4 @@
+import style from './style.css';
 import Grid from '../../../atoms/grid';
 import Button from '../../../atoms/button';
 import AnimationCounter from '../../../atoms/animation-counter'
@@ -58,14 +59,40 @@ const ScoreDisplay = props => {
         </Grid>
 
         <Grid container justify="flex-end">
+          <Button outlined
+            onClick={props.onClickBack}
+            disabled // TODO: add function
+          >「{props.chara}」の満点の例を見る</Button>
+        </Grid>
+
+        <Grid container justify="flex-end" m="24px 0 4px">
+          <table class={style.recTable}>
+            <tbody>
+              <tr>
+                <td class={style.head}>合計得点</td>
+                <td class={style.last}>{props.achivements.totalScore} 点</td>
+              </tr>
+              <tr>
+                <td class={style.head}>採点回数</td>
+                <td class={style.last}>{props.achivements.totalNum} 回</td>
+              </tr>
+              <tr>
+                <td class={style.head}>書いた文字数</td>
+                <td class={style.last}>{props.achivements.numChars} / 文字数</td>
+              </tr>
+            </tbody>
+          </table>
+        </Grid>
+
+        <Grid container justify="flex-end">
           <Grid flex={1/2}>
-            <Button outlined
-              onClick={props.onClickBack}
-              disabled // TODO: add function
-            >「{props.chara}」の満点の例を見る</Button>
+            <a href="/record" style={{textDecoration: 'none'}}>
+              <Button outlined>現在の実績</Button>
+            </a>
           </Grid>
         </Grid>
-        <Grid m='12px 0 16px'>
+
+        <Grid m='24px 0 32px'>
           <Button outlined onClick={props.onClickBack}>戻る</Button>
         </Grid>
       </>

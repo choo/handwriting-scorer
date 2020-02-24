@@ -87,6 +87,7 @@ const Main = (props) => {
           score={selected.score}
           imageBlob={imageBlob}
           onClickBack={goBackHome}
+          achivements={props.achivements}
         />
       )}
     </div>
