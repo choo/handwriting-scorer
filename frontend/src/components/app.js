@@ -7,7 +7,7 @@ import Main from './pages/main';
 import init from '../utils/init';
 import Record from './pages/record';
 import DetailRecord from './pages/detail-record';
-import {summarizeAchivements} from '../utils/utils';
+import {updateAchivements, summarizeAchivements} from '../utils/utils';
 import {doAjax} from '../utils/ajax';
 import {MAX_WIDTH, WINDOW_PADDING} from '../utils/layout';
 
@@ -18,14 +18,24 @@ export default class App extends Component {
     this.state = {
       achivements: null,
     };
+    this.currentAchivements = {};
+    this.updateScores = this.updateScores.bind(this);
   }
 
   componentDidMount() {
     doAjax('/api/achivements', {}, (result) => {
+      const achieve = summarizeAchivements(result.achivements);
       this.setState({
-        achivements: summarizeAchivements(result.achivements),
+        achivements: achieve,
       });
+      this.currentAchivements = achieve;
     });
+  }
+
+  updateScores(charCode, score) {
+    this.currentAchivements = updateAchivements(
+        this.currentAchivements, charCode, score);
+    this.setState({achivements: this.currentAchivements});
   }
 
   render() {
@@ -36,7 +46,10 @@ export default class App extends Component {
       >
         <Header />
         <Router>
-          <Main path="/" />
+          <Main path="/"
+            achivements={this.state.achivements}
+            updateScores={this.updateScores}
+          />
           <Record path="/record" achivements={this.state.achivements} />
           <DetailRecord
             path="/record/detail"
