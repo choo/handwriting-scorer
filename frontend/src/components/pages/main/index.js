@@ -38,10 +38,10 @@ const Main = (props) => {
     }
   };
 
-  const selectKana = async (charCode) => {
+  const selectChar = async (charCode) => {
     let prob = 0.0;
-    for (const [kana, p] of predicted) {
-      if (kana === charCode) {
+    for (const [code, p] of predicted) {
+      if (code === charCode) {
         prob = p;
         break;
       }
@@ -49,7 +49,7 @@ const Main = (props) => {
     const score = (-((1.0 - prob) ** (1 / 3) - 1)) * 100.0;
     props.setStatus(STATUS.SHOWING_SCORE);
     setSelected({
-      kana: String.fromCharCode(parseInt(charCode, 16)),
+      char: String.fromCharCode(parseInt(charCode, 16)),
       prob: prob,
       score: parseInt(score),
     });
@@ -72,12 +72,12 @@ const Main = (props) => {
         <ResultsSelection
           predicted={classifyChars(predicted)}
           imageBlob={imageBlob}
-          onSelectKana={selectKana}
+          onSelectChar={selectChar}
           onClickBack={goBackHome}
         />
       ) : (
         <ScoreDisplay
-          chara={selected.kana}
+          chara={selected.char}
           score={selected.score}
           imageBlob={imageBlob}
           onClickBack={goBackHome}

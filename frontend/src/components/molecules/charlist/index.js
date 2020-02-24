@@ -42,14 +42,14 @@ const CharList = props => {
               <div></div>
             </Grid>
             {row.map((c, j) => {
-              const kanaCode = '0x' + c.charCodeAt(0).toString(16)
+              const charCode = '0x' + c.charCodeAt(0).toString(16)
               return (
                 <Grid flex={1/6} p='2px 2px' key={j}>
                   {c ? (
                     <>
                       {props.button || (
                         <Button outlined
-                          onClick={(e) => props.onSelectKana(kanaCode)}
+                          onClick={(e) => props.onSelectChar(charCode)}
                           style={{
                             minWidth: '48px',
                             backgroundColor:

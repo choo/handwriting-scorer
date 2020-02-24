@@ -32,7 +32,7 @@ const ResultsSelection = props => {
         <>
           <SelectSuggestion
             predicted={props.predicted}
-            onSelectKana={props.onSelectKana}
+            onSelectChar={props.onSelectChar}
           />
           <Grid container justify='flex-end' m='4px 0 8px' key={0}>
             <Grid flex={3/4}>
@@ -52,7 +52,7 @@ const ResultsSelection = props => {
             </Grid>
           </Grid>
           <CharList
-            onSelectKana={props.onSelectKana}
+            onSelectChar={props.onSelectChar}
           />
         </>
       )}
@@ -77,16 +77,16 @@ const SelectSuggestion = props => {
             </Grid>
             <Grid container flex={3/4}  flexWrap={'wrap'}>
             {shuffleArray(chars.slice(0, NUM_DISPLAY)).map(result => {
-              const kanaCode = result[0];
+              const charCode = result[0];
               return (
-                <Grid flex={1/6} m='2px' key={kanaCode}>
+                <Grid flex={1/6} m='2px' key={charCode}>
                   <Button
                     outlined
                     style={{minWidth: '50px'}}
-                    onClick={(e) => props.onSelectKana(kanaCode)}
+                    onClick={(e) => props.onSelectChar(charCode)}
                   >
                     <span>
-                    {String.fromCharCode(parseInt(kanaCode, 16))}
+                    {String.fromCharCode(parseInt(charCode, 16))}
                     {/* {' ' + result[1].toFixed(4)} {/* probablity */}
                     </span>
                   </Button>

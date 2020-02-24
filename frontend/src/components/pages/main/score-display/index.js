@@ -5,7 +5,7 @@ import AnimationCounter from '../../../atoms/animation-counter'
 
 /*
 ScoreDisplay.propTypes = {
-  chara: PropTypes.string.isRequired,
+  char: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
   imageBlob: PropTypes.instanceOf(Blob),
   onClickBack: PropTypes.func.isRequired,
@@ -31,7 +31,7 @@ const ScoreDisplay = props => {
           </Grid>
           <Grid flex={5/12}>
             <span style={{fontSize: '96px'}}>
-              {props.chara}
+              {props.char}
             </span>
           </Grid>
         </Grid>
@@ -62,7 +62,7 @@ const ScoreDisplay = props => {
           <Button outlined
             onClick={props.onClickBack}
             disabled // TODO: add function
-          >「{props.chara}」の満点の例を見る</Button>
+          >「{props.char}」の満点の例を見る</Button>
         </Grid>
 
         <Grid container justify="flex-end" m="24px 0 4px">
