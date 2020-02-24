@@ -18,7 +18,7 @@ if (typeof window !== "undefined") {
   disableBodyScroll(window.document.body);
 }
 
-const Main = () => {
+const Main = (props) => {
   const [status, setStatus] = useState(STATUS.WRITING);
   const [imageBlob, setImageBlob] = useState(null);
   const [predicted, setPredicted] = useState([]);
@@ -59,6 +59,7 @@ const Main = () => {
       prob: prob,
       score: parseInt(score),
     });
+    props.updateScores(charCode, score);
     const result = await postImage('/api/upload', {
       uploadfile: imageBlob,
       charcode: charCode,

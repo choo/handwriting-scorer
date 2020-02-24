@@ -44,6 +44,35 @@ const summarizeAchivements = (writtenInfo) => {
   return ret;
 };
 
+const updateAchivements = (current, charCode, score) => {
+  const cur  = current;
+  const s = parseInt(score);
+  const c = String.fromCharCode(parseInt(charCode, 16));
+  const t = _classifyChar(c);
+  cur.totalNum   += 1;
+  cur.totalScore += s;
+  cur.byType[t].totalNum   += 1;
+  cur.byType[t].totalScore += s;
+  if (cur.byType[t].byChar[c]) {
+    const charInfo = cur.byType[t].byChar[c];
+    charInfo.num += 1;
+    charInfo.max = Math.max(charInfo.max, s);
+    charInfo.total += s;
+  } else {
+    cur.numChars += 1;
+    cur.byType[t].numChars += 1;
+    cur.byType[t].byChar[c] = {
+      num: 1,
+      max: s,
+      total: s,
+    };
+  }
+  cur.averageScore = cur.totalScore / cur.totalNum;
+  cur.byType[t].averageScore = (cur.byType[t].totalScore /
+      cur.byType[t].totalNum);
+  return cur;
+};
+
 /* TODO: extract utility module as char-utils.js */
 const NUM_MIN  = '0' // '\u0030'
 const NUM_MAX  = '9' // '\u0039'
@@ -107,4 +136,4 @@ const classifyChars = chars => {
   return Object.entries(ret);
 };
 
-export {shuffleArray, classifyChars, summarizeAchivements};
+export {shuffleArray, classifyChars, summarizeAchivements, updateAchivements};
