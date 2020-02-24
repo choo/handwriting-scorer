@@ -1,0 +1,15 @@
+table.recTable {
+  font-size: 24px;
+  width: 100%;
+  text-align: end;
+}
+td.last {
+  width: 50%;
+  font-weight: bold;
+}
+/*
+table.recTable td {
+  border-bottom: 1px solid #222;
+  padding: 2px;
+}
+*/
