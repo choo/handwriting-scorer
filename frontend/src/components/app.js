@@ -5,6 +5,7 @@ import Header from './molecules/header';
 import Container from './atoms/container';
 import Main from './pages/main';
 import init from '../utils/init';
+import {STATUS} from '../utils/const';
 import Record from './pages/record';
 import DetailRecord from './pages/detail-record';
 import {updateAchivements, summarizeAchivements} from '../utils/utils';
@@ -17,9 +18,12 @@ export default class App extends Component {
     init();
     this.state = {
       achivements: null,
+      mainStatus: 1,
     };
     this.currentAchivements = {};
-    this.updateScores = this.updateScores.bind(this);
+    this.updateScores  = this.updateScores.bind(this);
+    this.setMainStatus = this.setMainStatus.bind(this);
+    this.goToMain = this.goToMain.bind(this);
   }
 
   componentDidMount() {
@@ -38,17 +42,26 @@ export default class App extends Component {
     this.setState({achivements: this.currentAchivements});
   }
 
+  setMainStatus(status) {
+    this.setState({mainStatus: status});
+  }
+  goToMain() {
+    this.setMainStatus(STATUS.WRITING);
+  }
+
   render() {
     return (
       <Container style={{
         padding: `0 ${WINDOW_PADDING}px`,
         maxWidth: `${MAX_WIDTH}px`}}
       >
-        <Header />
+        <Header goToMain={this.goToMain} />
         <Router>
           <Main path="/"
             achivements={this.state.achivements}
             updateScores={this.updateScores}
+            status={this.state.mainStatus}
+            setStatus={this.setMainStatus}
           />
           <Record path="/record" achivements={this.state.achivements} />
           <DetailRecord

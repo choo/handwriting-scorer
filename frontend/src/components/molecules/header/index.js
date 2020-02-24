@@ -21,7 +21,7 @@ const Header = (props) => {
           overflow: 'auto',
           boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
         }}>
-          <a href="/" style={{
+          <a href="/" onClick={props.goToMain} style={{
             color: '#000',
             display: 'block',
             padding: '20px',
