@@ -1,3 +1,8 @@
+export const STATUS = {
+  WRITING: 1,
+  SELECTING: 2,
+  SHOWING_SCORE: 3,
+};
 export const NUM_DISPLAY = 4;
 export const CHAR_TYPES = ['hira', 'kata', 'kanji', 'alpha'];
 export const CHAR_DISPLAYS = {

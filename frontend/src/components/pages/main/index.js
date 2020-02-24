@@ -3,23 +3,17 @@ import { enableBodyScroll, disableBodyScroll, clearAllBodyScrollLocks } from 'bo
 
 import {postImage} from '../../../utils/ajax';
 import {classifyChars} from '../../../utils/utils';
+import {STATUS} from '../../../utils/const';
 
 import HandwritingCanvas from './handwriting-canvas';
 import ResultsSelection from './results-selection';
 import ScoreDisplay from './score-display';
-
-const STATUS = {
-  WRITING: 0,
-  SELECTING: 1,
-  SHOWING_SCORE: 2,
-};
 
 if (typeof window !== "undefined") {
   disableBodyScroll(window.document.body);
 }
 
 const Main = (props) => {
-  const [status, setStatus] = useState(STATUS.WRITING);
   const [imageBlob, setImageBlob] = useState(null);
   const [predicted, setPredicted] = useState([]);
   const [selected, setSelected] = useState({});
@@ -29,7 +23,7 @@ const Main = (props) => {
       enableBodyScroll(window.document.body);
     }
     clearAllBodyScrollLocks();
-    setStatus(STATUS.SELECTING);
+    props.setStatus(STATUS.SELECTING);
     setImageBlob(imgBlob);
     const result = await postImage('/api/predict', {uploadfile: imgBlob});
     if (result && result.predicted) {
@@ -37,7 +31,7 @@ const Main = (props) => {
     }
   };
   const goBackHome = () => {
-    setStatus(STATUS.WRITING);
+    props.setStatus(STATUS.WRITING);
     setPredicted([]);
     if (typeof window !== "undefined") {
       disableBodyScroll(window.document.body);
@@ -53,7 +47,7 @@ const Main = (props) => {
       }
     }
     const score = (-((1.0 - prob) ** (1 / 3) - 1)) * 100.0;
-    setStatus(STATUS.SHOWING_SCORE);
+    props.setStatus(STATUS.SHOWING_SCORE);
     setSelected({
       kana: String.fromCharCode(parseInt(charCode, 16)),
       prob: prob,
@@ -70,11 +64,11 @@ const Main = (props) => {
 
   return (
     <div>
-      {status === STATUS.WRITING ? (
+      {props.status === STATUS.WRITING ? (
         <HandwritingCanvas
           onScore={submitImage}
         />
-      ) : status === STATUS.SELECTING ? (
+      ) : props.status === STATUS.SELECTING ? (
         <ResultsSelection
           predicted={classifyChars(predicted)}
           imageBlob={imageBlob}
