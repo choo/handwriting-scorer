@@ -40,7 +40,7 @@ const DetailRecord = (props) => {
         ))}
       </Grid>
       <CharList
-        //onSelectKana={props.onSelectKana}
+        //onSelectChar={props.onSelectChar}
         getButtonColor={getButtonColor}
       />
     </>
