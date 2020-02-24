@@ -49,7 +49,7 @@ const RecordTable = (props) => {
           <tr>
             <td class={style.head}>書いた文字数</td>
             <td class={style.mid}>{res.numChars} / 文字数</td>
-            <td class={style.last}>（のべ {res.totalNum}）</td>
+            <td class={style.last}>（採点回数 {res.totalNum}）</td>
           </tr>
         </tbody>
       </table>
