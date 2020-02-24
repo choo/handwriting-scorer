@@ -31,7 +31,7 @@ const summarizeAchivements = (writtenInfo) => {
     ret.byType[type].numChars += 1;
     ret.byType[type].totalNum += info.num;
     ret.byType[type].totalScore += info.total;
-    ret.byType[type].byChar[c] = info;
+    ret.byType[type].byChar[c] = info; // {max: x, num: x, total: x}
   }
   if (ret.totalNum > 0) {
     ret.averageScore = ret.totalScore / ret.totalNum;
