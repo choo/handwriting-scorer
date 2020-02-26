@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'preact/hooks';
 
 import Grid from '../../../atoms/grid';
 import Button from '../../../atoms/button';
+import SelectLineWeight from '../../../molecules/select-lineweight';
 import { disableBodyScroll } from 'body-scroll-lock';
 import {CANVAS_BORDER} from '../../../../utils/layout';
 
@@ -9,7 +10,6 @@ import {CANVAS_BORDER} from '../../../../utils/layout';
 //import CheckIcon from '@material-ui/icons/Check';
 
 import Wording   from '../../../../utils/lang';
-//import LineWeightButton from './LineWeightButton';
 
 const LANG = 'ja'
 
@@ -149,9 +149,9 @@ const HandwritingCanvas = (props) => {
 
       <Grid container m='4px 0 6px'>
         <Grid flex={1} p='0 6px 0 0'>
-          <Button outlined>
-            線の太さ
-          </Button>
+          <SelectLineWeight
+            onChangeWeight={setLineWeight}
+          />
         </Grid>
         <Grid flex={2}>
           <Button outlined onClick={resetCanvas}>
