@@ -7,6 +7,8 @@ import Button from '../button';
  *    buttonText: (required) string: display text for on button
  *    menu  : (required) menu contents
  *    style : (optional) style settings such as menu position
+ *    onClickClose : (optional, default: false)
+ *      close menu whenever and wherever clicked.
  */
 const Popup = (props) => {
   const [isShown, setIsShown] = useState(false);
@@ -15,7 +17,7 @@ const Popup = (props) => {
 
   useEffect(() => {
     documentClickHandler.current = e => {
-      if (!popupRef.current.contains(e.target)) {
+      if (props.onClickClose || !popupRef.current.contains(e.target)) {
         setIsShown(false);
         document.removeEventListener('click', documentClickHandler.current);
       }
