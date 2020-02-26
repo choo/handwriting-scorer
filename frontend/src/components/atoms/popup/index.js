@@ -54,11 +54,6 @@ const Popup = (props) => {
         ref={popupRef}
       >
         {props.menu}
-        {/*
-        <button onClick={handleCloseButtonClick}>
-          Close
-        </button>
-        */}
       </div>
     </div>
   );
