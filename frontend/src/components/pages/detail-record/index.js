@@ -31,17 +31,29 @@ const DetailRecord = (props) => {
       <Grid container justify='space-between' m={'0 0 16px'}>
         {colorDef.map((def, idx) => (
           <Grid flex={1/2} key={idx}>
-            <Button outlined
-              style={{backgroundColor: def.color}}
-            >
+            <div style={{
+                backgroundColor: def.color,
+                padding: '4px',
+                textAlign: 'center',
+            }}>
               <span>{`${def.min}点〜`}</span>
-            </Button>
+            </div>
           </Grid>
         ))}
       </Grid>
       <CharList
-        //onSelectChar={props.onSelectChar}
-        getButtonColor={getButtonColor}
+        makeButton={(charCode, charType, c) => {
+          return (
+            <div style={{
+                minWidth: '48px',
+                padding: '4px',
+                textAlign: 'center',
+                backgroundColor: getButtonColor(charType, c),
+            }}>
+              <span>{c}</span>
+            </div>
+          );
+        }}
       />
     </>
   );

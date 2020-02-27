@@ -47,14 +47,15 @@ const CharList = props => {
                 <Grid flex={1/6} p='2px 2px' key={j}>
                   {c ? (
                     <>
-                      {props.button || (
+                      {props.makeButton ? (
+                        <>
+                          {props.makeButton(charCode, charType, c)}
+                        </>
+                      ) : (
                         <Button outlined
                           onClick={(e) => props.onSelectChar(charCode)}
                           style={{
                             minWidth: '48px',
-                            backgroundColor:
-                              (props.getButtonColor ?
-                                props.getButtonColor(charType, c) : ''),
                           }}
                         >
                           <span>{c}</span>
