@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c');
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c|Noto+Serif+JP');
 
 html, body {
   height: 100%;
@@ -16,6 +16,7 @@ html, body {
 * {
   box-sizing: border-box;
   font-family: 'M PLUS Rounded 1c', 'Helvetica Neue', arial, sans-serif;
+  /*font-family: 'Noto Serif JP', 'M PLUS Rounded 1c', 'Helvetica Neue', arial, sans-serif;*/
 }
 
 #app {
