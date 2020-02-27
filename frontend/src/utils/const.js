@@ -1,3 +1,6 @@
+export const CANVAS_STROKE_COLOR = '#000'
+export const DEFAULT_LINE_WEIGHT = 9;
+
 export const STATUS = {
   WRITING: 1,
   SELECTING: 2,

@@ -3,7 +3,7 @@ import { enableBodyScroll, disableBodyScroll, clearAllBodyScrollLocks } from 'bo
 
 import {postImage} from '../../../utils/ajax';
 import {classifyChars} from '../../../utils/utils';
-import {STATUS} from '../../../utils/const';
+import {DEFAULT_LINE_WEIGHT, STATUS} from '../../../utils/const';
 
 import HandwritingCanvas from './handwriting-canvas';
 import ResultsSelection from './results-selection';
@@ -17,6 +17,7 @@ const Main = (props) => {
   const [imageBlob, setImageBlob] = useState(null);
   const [predicted, setPredicted] = useState([]);
   const [selected, setSelected] = useState({});
+  const [lineWeight, setLineWeight] = useState(DEFAULT_LINE_WEIGHT);
 
   const submitImage = async (imgBlob) => {
     if (typeof window !== "undefined") {
@@ -67,6 +68,8 @@ const Main = (props) => {
       {props.status === STATUS.WRITING ? (
         <HandwritingCanvas
           onScore={submitImage}
+          lineWeight={lineWeight}
+          setLineWeight={setLineWeight}
         />
       ) : props.status === STATUS.SELECTING ? (
         <ResultsSelection
