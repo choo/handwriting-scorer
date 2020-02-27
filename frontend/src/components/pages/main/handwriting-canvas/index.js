@@ -5,6 +5,7 @@ import Button from '../../../atoms/button';
 import SelectLineWeight from '../../../molecules/select-lineweight';
 import { disableBodyScroll } from 'body-scroll-lock';
 import {CANVAS_BORDER} from '../../../../utils/layout';
+import {CANVAS_STROKE_COLOR} from '../../../../utils/const';
 
 //import CancelIcon from '@material-ui/icons/Cancel';
 //import CheckIcon from '@material-ui/icons/Check';
@@ -13,17 +14,11 @@ import Wording   from '../../../../utils/lang';
 
 const LANG = 'ja'
 
-const pathConf = {
-  weight: 9,
-  color: '#000'
-};
-
 
 const HandwritingCanvas = (props) => {
 
   const canvasRef = useRef(null)
   const [isDrawing, setIsDrawing] = useState(false);
-  const [lineWeight, setLineWeight] = useState(pathConf.weight);
   const [hasInitialText, setHasInitialText] = useState(null);
 
   // initialization of canvas DOM
@@ -93,8 +88,8 @@ const HandwritingCanvas = (props) => {
     const [x, y] = getPosition(e);
     ctx.lineTo(x, y);
     ctx.lineCap = 'round';
-    ctx.lineWidth = lineWeight;
-    ctx.strokeStyle = pathConf.color;
+    ctx.lineWidth = props.lineWeight;
+    ctx.strokeStyle = CANVAS_STROKE_COLOR;
     ctx.stroke();
   }
 
@@ -150,7 +145,7 @@ const HandwritingCanvas = (props) => {
       <Grid container m='4px 0 6px'>
         <Grid flex={1} p='0 6px 0 0'>
           <SelectLineWeight
-            onChangeWeight={setLineWeight}
+            onChangeWeight={props.setLineWeight}
           />
         </Grid>
         <Grid flex={2}>
