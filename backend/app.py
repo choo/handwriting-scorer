@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 #-*- coding: utf-8 -*-
 
-import os, argparse, datetime, secrets, time
+import os, argparse, datetime, secrets, time, fsutils
 from flask import Flask, jsonify, send_from_directory, request, make_response
 from models.model import Model
 from models.gcsutils import GCSUtils
@@ -10,14 +10,16 @@ from models.gcsutils import GCSUtils
 SESSION_COOKIE = '__uid'
 ROOT_DIR = './build'
 STATIC_DIR = os.path.join(ROOT_DIR, '')
+
 app = Flask(__name__, static_folder=STATIC_DIR)
 
 model = Model()
 model.setup()
 
-# FIXME: define bucket name as env variable
-GCS_BUCKET_NAME = 'handwriting-stg-00' # if not exist, error occurs
+KANJI_INFO_JSON = os.environ['KANJI_INFO_JSON']
+GCS_BUCKET_NAME = os.environ['GCS_BUCKET_NAME']
 gcs_utils = GCSUtils()
+kanji_info = fsutils.read_json(KANJI_INFO_JSON)
 
 
 def _make_token(num_bytes=16):
@@ -104,6 +106,7 @@ def fetch_summary():
     return make_response(jsonify({
         'status': 'ok',
         'achivements': achivements,
+        'kanjiInfo': kanji_info,
     }))
 
 ''' static html '''

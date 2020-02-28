@@ -19,6 +19,7 @@ export default class App extends Component {
     this.state = {
       achivements: null,
       mainStatus: 1,
+      kanjiInfo: null,
     };
     this.currentAchivements = {};
     this.updateScores  = this.updateScores.bind(this);
@@ -31,6 +32,7 @@ export default class App extends Component {
       const achieve = summarizeAchivements(result.achivements);
       this.setState({
         achivements: achieve,
+        kanjiInfo: result.kanjiInfo,
       });
       this.currentAchivements = achieve;
     });
@@ -59,6 +61,7 @@ export default class App extends Component {
         <Router>
           <Main path="/"
             achivements={this.state.achivements}
+            kanjiInfo={this.state.kanjiInfo}
             updateScores={this.updateScores}
             status={this.state.mainStatus}
             setStatus={this.setMainStatus}
@@ -67,6 +70,7 @@ export default class App extends Component {
           <DetailRecord
             path="/record/detail"
             achivements={this.state.achivements}
+            kanjiInfo={this.state.kanjiInfo}
           />
         </Router>
       </Container>

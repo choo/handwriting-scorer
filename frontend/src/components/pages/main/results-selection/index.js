@@ -52,6 +52,7 @@ const ResultsSelection = props => {
             </Grid>
           </Grid>
           <CharList
+            kanjiInfo={props.kanjiInfo}
             onSelectChar={props.onSelectChar}
           />
         </>

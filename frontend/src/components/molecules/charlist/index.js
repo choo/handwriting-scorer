@@ -35,46 +35,99 @@ const CharList = props => {
       </Grid>
 
       <Grid p='4px 12px 4px'>
-        {CHARS[charType].map((row, i) => {
-          return (
-          <Grid container key={i} justify='space-between'>
-            <Grid flex={1/12}>
-              <div></div>
-            </Grid>
-            {row.map((c, j) => {
-              const charCode = '0x' + c.charCodeAt(0).toString(16)
-              return (
-                <Grid flex={1/6} p='2px 2px' key={j}>
-                  {c ? (
-                    <>
-                      {props.makeButton ? (
-                        <>
-                          {props.makeButton(charCode, charType, c)}
-                        </>
-                      ) : (
-                        <Button outlined
-                          onClick={(e) => props.onSelectChar(charCode)}
-                          style={{
-                            minWidth: '48px',
-                          }}
-                        >
-                          <span>{c}</span>
-                        </Button>
-                      )}
-                    </>
-                  ) : null}
-                </Grid>
-              )
-            })}
-            <Grid flex={1/12}>
-              <div></div>
-            </Grid>
-          </Grid>
-          )
-        })}
+        {charType === 'kanji' ? (
+          <KanjiTable
+            kanjiInfo={props.kanjiInfo}
+            makeButton={props.makeButton}
+            onSelectChar={props.onSelectChar}
+          />
+        ) : (
+          <CharTable
+            charInfo={CHARS[charType]}
+            charType={charType}
+            makeButton={props.makeButton}
+            onSelectChar={props.onSelectChar}
+          />
+        )}
       </Grid>
     </>
   );
 };
+
+
+const KanjiTable = props => {
+  const SIZE = 5;
+  const numDisplay = 200;
+  const chars = props.kanjiInfo.slice(0, numDisplay);
+  const nRows = Math.ceil(chars.length / SIZE);
+  return (
+    <>
+      {[...Array(nRows).keys()].map(i => (
+        <Grid container key={i} justify='space-between'>
+          <Grid flex={1/12}></Grid>
+            {chars.slice(i * SIZE, (i + 1) * SIZE).map((info, j) => {
+              const c = info.title;
+              const charCode = '0x' + c.charCodeAt(0).toString(16)
+              return (
+                <Grid flex={1/6} p='2px 2px' key={j}>
+                  {c && (
+                    props.makeButton ? (
+                      props.makeButton(charCode, 'kanji', c)
+                    ) : (
+                      <Button outlined
+                        onClick={(e) => props.onSelectChar(charCode)}
+                        style={{
+                          minWidth: '48px',
+                        }}
+                      >
+                        <span>{c}</span>
+                      </Button>
+                    )
+                  )}
+                </Grid>
+              )
+            })}
+          <Grid flex={1/12}></Grid>
+        </Grid>
+      ))}
+    </>
+  );
+};
+
+
+const CharTable = props => {
+  return (
+    <>
+      {props.charInfo.map((row, i) => (
+        <Grid container key={i} justify='space-between'>
+          <Grid flex={1/12}></Grid>
+          {row.map((c, j) => {
+            const charCode = '0x' + c.charCodeAt(0).toString(16)
+            return (
+              <Grid flex={1/6} p='2px 2px' key={j}>
+                {c && (
+                  props.makeButton ? (
+                    props.makeButton(charCode, props.charType, c)
+                  ) : (
+                    <Button outlined
+                      onClick={(e) => props.onSelectChar(charCode)}
+                      style={{
+                        minWidth: '48px',
+                      }}
+                    >
+                      <span>{c}</span>
+                    </Button>
+                  )
+                )}
+              </Grid>
+            )
+          })}
+          <Grid flex={1/12}></Grid>
+        </Grid>
+      ))}
+    </>
+  );
+};
+
 
 export default CharList;
