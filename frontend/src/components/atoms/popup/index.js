@@ -35,11 +35,6 @@ const Popup = (props) => {
     }
   }
 
-  const handleCloseButtonClick = () => {
-    setIsShown(false);
-    removeDocumentClickHandler();
-  }
-
   return (
     <div class={style.wrapper}>
       <Button outlined onClick={handleToggleButtonClick}>
