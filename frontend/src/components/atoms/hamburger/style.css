@@ -109,23 +109,14 @@
  */
 .menuWrapper {
   position: absolute;
-  /* top: 80px; */
-  /* should be defined as style attr according to the height of header */
   margin: 0 auto;
   z-index: 10;
   background-color: #fff;
-  display: None;
-  /*
-  max-height: 0px;
-  transition: all 500ms ease-in-out;
-  */
+  transform: scale(0);
+  transition: transform 0.2s;
+  transform-origin: top right;
 }
 
 .menuWrapper.isActive {
-  display: block;
-  /*
-  max-height: 200px;
-  background-color: #0ff;
-  visibility: visible;
-  */
+  transform: scale(1);
 }
