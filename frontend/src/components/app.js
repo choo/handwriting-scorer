@@ -5,7 +5,7 @@ import Header from './molecules/header';
 import Container from './atoms/container';
 import Main from './pages/main';
 import init from '../utils/init';
-import {STATUS} from '../utils/const';
+import {DEFAULT_LINE_WEIGHT, STATUS} from '../utils/const';
 import Record from './pages/record';
 import DetailRecord from './pages/detail-record';
 import {updateAchivements, summarizeAchivements} from '../utils/utils';
@@ -20,15 +20,17 @@ export default class App extends Component {
       achivements: null,
       mainStatus: 1,
       kanjiInfo: null,
+      lineWeight: DEFAULT_LINE_WEIGHT,
     };
     this.currentAchivements = {};
     this.updateScores  = this.updateScores.bind(this);
     this.setMainStatus = this.setMainStatus.bind(this);
+    this.setLineWeight = this.setLineWeight.bind(this);
     this.goToMain = this.goToMain.bind(this);
   }
 
   componentDidMount() {
-    doAjax('/api/achivements', {}, (result) => {
+    doAjax('/api/init', {}, (result) => {
       const achieve = summarizeAchivements(result.achivements);
       this.setState({
         achivements: achieve,
@@ -44,6 +46,9 @@ export default class App extends Component {
     this.setState({achivements: this.currentAchivements});
   }
 
+  setLineWeight(weight) {
+    this.setState({lineWeight: weight});
+  }
   setMainStatus(status) {
     this.setState({mainStatus: status});
   }
@@ -65,6 +70,8 @@ export default class App extends Component {
             updateScores={this.updateScores}
             status={this.state.mainStatus}
             setStatus={this.setMainStatus}
+            lineWeight={this.state.lineWeight}
+            setLineWeight={this.setLineWeight}
           />
           <Record path="/record" achivements={this.state.achivements} />
           <DetailRecord
