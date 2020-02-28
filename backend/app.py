@@ -99,7 +99,7 @@ def uploadImage():
     }))
 
 
-@app.route('/api/achivements', methods=['GET'])
+@app.route('/api/init', methods=['GET'])
 def fetch_summary():
     session_id = _get_session_id(SESSION_COOKIE)
     achivements = _list_achivements(session_id)
