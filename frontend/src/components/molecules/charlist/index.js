@@ -24,7 +24,7 @@ const CharList = props => {
                 width: '100%',
                 height: '100%',
                 //border: '1px solid',
-                backgroundColor: charType === t ? '#ffc2e3' : '#fff',
+                backgroundColor: charType === t ? '#fff826' : '#fff',
                 fontSize: '14px',
               }}
             >
