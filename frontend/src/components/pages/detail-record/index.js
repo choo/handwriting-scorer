@@ -2,11 +2,12 @@ import Grid from '../../atoms/grid';
 import Button from '../../atoms/button';
 import CharList from '../../molecules/charlist';
 
+
 const colorDef = [
-  {min: 90, color: '#78ffa1'},
-  {min: 50, color: '#fff702'},
-  {min: 10, color: '#73e5ff'},
-  {min:  0, color: '#cecece'},
+  {min: 90, color: '#ff6d6d'},
+  {min: 50, color: '#ff9191'},
+  {min: 10, color: '#ffb6b6'},
+  {min:  0, color: '#ffdada'},
 ];
 
 const DetailRecord = (props) => {
@@ -48,6 +49,8 @@ const DetailRecord = (props) => {
                 minWidth: '48px',
                 padding: '4px',
                 textAlign: 'center',
+                border: '1px solid #000',
+                borderRadius: '6px',
                 backgroundColor: getButtonColor(charType, c),
             }}>
               <span>{c}</span>
