@@ -43,20 +43,19 @@ const DetailRecord = (props) => {
         ))}
       </Grid>
       <CharList
-        makeButton={(charCode, charType, c) => {
-          return (
-            <div style={{
-                minWidth: '48px',
-                padding: '4px',
-                textAlign: 'center',
-                border: '1px solid #000',
-                borderRadius: '6px',
-                backgroundColor: getButtonColor(charType, c),
-            }}>
-              <span>{c}</span>
-            </div>
-          );
-        }}
+        kanjiInfo={props.kanjiInfo}
+        makeButton={(charCode, charType, c) => 
+          <div style={{
+              minWidth: '48px',
+              padding: '4px',
+              textAlign: 'center',
+              border: '1px solid #000',
+              borderRadius: '6px',
+              backgroundColor: getButtonColor(charType, c),
+          }}>
+            <span>{c}</span>
+          </div>
+        }
       />
     </>
   );

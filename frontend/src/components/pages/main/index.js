@@ -77,6 +77,7 @@ const Main = (props) => {
           imageBlob={imageBlob}
           onSelectChar={selectChar}
           onClickBack={goBackHome}
+          kanjiInfo={props.kanjiInfo}
         />
       ) : (
         <ScoreDisplay
