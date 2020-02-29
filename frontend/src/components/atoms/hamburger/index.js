@@ -4,32 +4,28 @@ import style from './style.css';
 const Hamburger = (props) => {
   const [isActive, setActive] = useState(false);
   const popupRef = useRef();
-  const documentClickHandler = useRef();
+  const docRef = useRef();
 
   useEffect(() => {
-    documentClickHandler.current = e => {
+    docRef.current = e => {
       if (!popupRef.current.contains(e.target)) {
-        setActive(false);
-        document.removeEventListener('click', documentClickHandler.current);
+        closeMenu();
       }
     }
   }, []);
 
-  const handleToggleButtonClick = () => {
+  const toggleMenu = () => {
     if (!isActive) {
       setActive(true);
       setTimeout(() => {
-        document.addEventListener('click', documentClickHandler.current);
+        document.addEventListener('click', docRef.current);
       }, 30);
     }
   }
 
-  const removeDocumentClickHandler = () => {
-    document.removeEventListener('click', documentClickHandler)
-  }
-  const handleClose = () => {
+  const closeMenu = () => {
     setActive(false);
-    removeDocumentClickHandler();
+    document.removeEventListener('click', docRef.current);
   }
 
   return (
@@ -40,7 +36,7 @@ const Hamburger = (props) => {
           style.hamburgerSlider + " " +
           (isActive ? style.isActive : '')
         }
-        onClick={handleToggleButtonClick}
+        onClick={toggleMenu}
       >
         <span class={style.hamburgerBox}>
           <span class={style.hamburgerInner}></span>
@@ -52,7 +48,7 @@ const Hamburger = (props) => {
           top: props.height,
           width: props.width,
         }}
-        onClick={handleClose}
+        onClick={closeMenu}
         ref={popupRef}
       >
         {props.children}
