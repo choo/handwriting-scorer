@@ -7,7 +7,7 @@ Click==7.0
 Flask==1.1.1
 -e git://github.com/choo/fsutils@a6f17765123f63741bd37227d22231d0591c3578#egg=fsutils
 gast==0.2.2
-google-auth==1.8.2
+google-auth==1.9
 google-auth-oauthlib==0.4.1
 google-cloud-storage==1.25.0
 google-pasta==0.1.8
