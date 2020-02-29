@@ -29,7 +29,7 @@ const Hamburger = (props) => {
   }
 
   return (
-    <>
+    <div class={style.wrapper}>
       <button type='button'
         class={
           style.hamburger + " " +
@@ -46,14 +46,13 @@ const Hamburger = (props) => {
         class={`${style.menuWrapper} ${isActive ? style.isActive : ''}`}
         style={{
           top: props.height,
-          width: props.width,
         }}
         onClick={closeMenu}
         ref={popupRef}
       >
         {props.children}
       </div>
-    </>
+    </div>
   );
 };
 
