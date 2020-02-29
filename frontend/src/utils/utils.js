@@ -88,8 +88,10 @@ const KANJI_MIN = '\u4e00' // 一(ichi)
 const KANJI_MAX = '\u9fff' //
 
 const _classifyChar = c => {
-  if (_isAlphaNum(c)) {
-    return 'alpha';
+  if (_isLatin(c)) {
+    return 'latin';
+  } else if (_isNum(c)) {
+    return 'num';
   } else if (_isHira(c)) {
     return 'hira';
   } else if (_isKata(c)) {
@@ -100,10 +102,13 @@ const _classifyChar = c => {
   return null;
 };
 
-const _isAlphaNum = c => {
-  return (NUM_MIN <= c && c <= NUM_MAX) ||
-         (LATIN_UPPER_MIN <= c && c <= LATIN_UPPER_MAX) ||
+const _isLatin = c => {
+  return (LATIN_UPPER_MIN <= c && c <= LATIN_UPPER_MAX) ||
          (LATIN_LOWER_MIN <= c && c <= LATIN_LOWER_MAX);
+};
+
+const _isNum = c => {
+  return (NUM_MIN <= c && c <= NUM_MAX);
 };
 
 const _isHira = c => {
@@ -123,7 +128,8 @@ const classifyChars = chars => {
     'hira' : [],
     'kata' : [],
     'kanji': [],
-    'alpha': [],
+    'latin': [],
+    'num'  : [],
   };
 
   for (const [charCode, _] of chars) {
