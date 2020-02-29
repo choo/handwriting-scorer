@@ -69,7 +69,7 @@ const KanjiTable = props => {
               const c = info.title;
               const charCode = '0x' + c.charCodeAt(0).toString(16)
               return (
-                <Grid flex={1/6} p='2px 2px' key={j}>
+                <Grid flex={1/6} p='2px' key={j}>
                   {c && (
                     props.makeButton ? (
                       props.makeButton(charCode, 'kanji', c)
@@ -78,9 +78,11 @@ const KanjiTable = props => {
                         onClick={(e) => props.onSelectChar(charCode)}
                         style={{
                           minWidth: '48px',
+                          fontSize: '16px',
+                          fontFamily: 'Noto Serif JP',
                         }}
                       >
-                        <span>{c}</span>
+                        {c}
                       </Button>
                     )
                   )}
@@ -113,9 +115,11 @@ const CharTable = props => {
                       onClick={(e) => props.onSelectChar(charCode)}
                       style={{
                         minWidth: '48px',
+                        fontSize: '16px',
+                        fontFamily: "Noto Serif JP",
                       }}
                     >
-                      <span>{c}</span>
+                      {c}
                     </Button>
                   )
                 )}

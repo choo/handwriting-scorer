@@ -16,14 +16,14 @@ const ResultsSelection = props => {
   return (
     <>
       <Grid container m='4px 0 0' alignItems='center'>
-        <Grid p='0 6px 0 0' flex={1}>
+        <Grid p='0 6px 0 0' flex={1/3}>
           <img style={{width: '100%'}}
             src={URL.createObjectURL(props.imageBlob)}
             border={'1'}
             alt={'canvas content'}
           />
         </Grid>
-        <Grid flex={2}>
+        <Grid flex={2/3}>
           <span>{'書いた文字は…'}</span>
         </Grid>
       </Grid>
@@ -83,13 +83,15 @@ const SelectSuggestion = props => {
                 <Grid flex={1/6} m='2px' key={charCode}>
                   <Button
                     outlined
-                    style={{minWidth: '50px'}}
+                    style={{
+                      minWidth: '48px',
+                      fontSize: '16px',
+                      fontFamily: "Noto Serif JP",
+                    }}
                     onClick={(e) => props.onSelectChar(charCode)}
                   >
-                    <span>
                     {String.fromCharCode(parseInt(charCode, 16))}
                     {/* {' ' + result[1].toFixed(4)} {/* probablity */}
-                    </span>
                   </Button>
                 </Grid>
               )

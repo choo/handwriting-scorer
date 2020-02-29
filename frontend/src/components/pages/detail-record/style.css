@@ -1,0 +1,9 @@
+.charBox {
+  min-width: 48px;
+  padding: 4px;
+  text-align: center;
+  border: 1px solid #000;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: "Noto Serif JP";
+}
