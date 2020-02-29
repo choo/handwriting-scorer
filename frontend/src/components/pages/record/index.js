@@ -3,24 +3,19 @@ import Button from '../../atoms/button';
 import style from './style.css';
 import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../../utils/const';
 import {clearAllBodyScrollLocks } from 'body-scroll-lock';
+import RecordTable from '../../molecules/record-table'
 
 
 const Record = (props) => {
   clearAllBodyScrollLocks();
-  const res = props.achivements || {};
+  if (!props.achivements) {
+    return null;
+  }
   return (
     <>
-      <RecordTable
-        title={'総合'}
-        achivements={props.achivements || {}} />
-      {CHAR_TYPES.map(type => {
-        const res = props.achivements ? props.achivements.byType[type] : {};
-        return (
-          <RecordTable
-            title={CHAR_DISPLAYS[type]}
-            achivements={res} />
-        );
-      })}
+      <h2 class={style.tableTitle}>総合実績</h2>
+      <RecordTable achivements={props.achivements} />
+
       <Grid container justify="flex-end" m='20px 0 0'>
         <Grid flex={2/3}>
           <a href="/record/detail" style={{textDecoration: 'none'}}>
@@ -33,7 +28,7 @@ const Record = (props) => {
 };
 
 
-const RecordTable = (props) => {
+const TypeRecordTable = (props) => {
   const res = props.achivements || {};
   const ave = res.averageScore ? res.averageScore.toFixed(1) : 0.0;
   return (

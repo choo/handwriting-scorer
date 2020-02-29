@@ -2,7 +2,7 @@ import style from './style.css';
 import Grid from '../../../atoms/grid';
 import Button from '../../../atoms/button';
 import AnimationCounter from '../../../atoms/animation-counter'
-import {CHAR_COUNTS} from '../../../../utils/const'
+import RecordTable from '../../../molecules/record-table'
 
 /*
 ScoreDisplay.propTypes = {
@@ -69,32 +69,7 @@ const ScoreDisplay = props => {
           >「{props.chara}」の満点の例を見る</Button>
         </Grid>
 
-        <Grid container justify="flex-end" m="12px 0 0">
-          <table class={style.recTable}>
-            <tbody>
-              <tr>
-                <td class={style.head}>書いた文字数</td>
-                <td class={style.last}>{props.achivements.numChars} / {CHAR_COUNTS.total}</td>
-              </tr>
-              <tr>
-                <td class={style.head}>採点回数</td>
-                <td class={style.last}>{props.achivements.totalNum} 回</td>
-              </tr>
-              <tr>
-                <td class={style.head}>合計得点</td>
-                <td class={style.last}>{props.achivements.totalScore} 点</td>
-              </tr>
-            </tbody>
-          </table>
-        </Grid>
-
-        <Grid container justify="flex-end">
-          <Grid flex={1/2}>
-            <a href="/record" style={{textDecoration: 'none'}}>
-              <Button outlined>現在の実績</Button>
-            </a>
-          </Grid>
-        </Grid>
+        <RecordTable achivements={props.achivements} />
 
         <Grid m='24px 0 32px'>
           <Button outlined onClick={props.onClickBack}>戻る</Button>
