@@ -1,6 +1,7 @@
 import Grid from '../../atoms/grid';
 import Button from '../../atoms/button';
 import CharList from '../../molecules/charlist';
+import style from './style.css'
 
 
 const colorDef = [
@@ -45,15 +46,10 @@ const DetailRecord = (props) => {
       <CharList
         kanjiInfo={props.kanjiInfo}
         makeButton={(charCode, charType, c) => 
-          <div style={{
-              minWidth: '48px',
-              padding: '4px',
-              textAlign: 'center',
-              border: '1px solid #000',
-              borderRadius: '6px',
+          <div class={style.charBox} style={{
               backgroundColor: getButtonColor(charType, c),
           }}>
-            <span>{c}</span>
+            {c}
           </div>
         }
       />

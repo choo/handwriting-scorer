@@ -19,18 +19,21 @@ const ScoreDisplay = props => {
           justify="space-evenly"
           alignItems="center"
         >
-          <Grid flex={5/12}>
+          <Grid flex={4/12}>
             <img style={{width: '100%'}}
               src={URL.createObjectURL(props.imageBlob)}
               border={'1'}
               alt={'canvas content'}
             />
           </Grid>
-          <Grid flex={1/12}>
+          <Grid flex={1/12} style={{textAlign: 'center'}}>
             <span>⇒</span>
           </Grid>
-          <Grid flex={5/12}>
-            <span style={{fontSize: '96px'}}>
+          <Grid flex={4/12}>
+            <span style={{
+              fontSize: '128px',
+              fontFamily: "'Noto Serif JP', 'M PLUS Rounded 1c'",
+            }}>
               {props.chara}
             </span>
           </Grid>
@@ -65,7 +68,7 @@ const ScoreDisplay = props => {
           >「{props.chara}」の満点の例を見る</Button>
         </Grid>
 
-        <Grid container justify="flex-end" m="24px 0 4px">
+        <Grid container justify="flex-end" m="12px 0 0">
           <table class={style.recTable}>
             <tbody>
               <tr>
