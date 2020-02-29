@@ -7,12 +7,13 @@ export const STATUS = {
   SHOWING_SCORE: 3,
 };
 export const NUM_DISPLAY = 4;
-export const CHAR_TYPES = ['hira', 'kata', 'kanji', 'alpha'];
+export const CHAR_TYPES = ['hira', 'kata', 'kanji', 'latin', 'num'];
 export const CHAR_DISPLAYS = {
   'hira': 'ひらがな',
   'kata': 'カタカナ',
   'kanji': '漢字',
-  'alpha': '英数字',
+  'latin': 'ローマ字',
+  'num': '数字',
 };
 const hiragana = [
   ['あ', 'い', 'う', 'え', 'お'],
@@ -58,10 +59,8 @@ const katakana = [
   ['ャ',   '', 'ュ',   '', 'ョ'],
 ];
 
-const alphaNum = [
+const latins = [
   //['',   '',   '',   '',   ''],
-  ['1',   '2',   '3',   '4',   '5'],
-  ['6',   '7',   '8',   '9',   '10'],
   ['A',   'B',   'C',   'D',   'E'],
   ['F',   'G',   'H',   'I',   'J'],
   ['K',   'L',   'M',   'N',   'O'],
@@ -75,10 +74,16 @@ const alphaNum = [
   ['u',   'v',   'w',   'x',   'y'],
   ['z',   '',   '',   '',   ''],
 ];
+
+const nums = [
+  ['1',   '2',   '3',   '4',   '5'],
+  ['6',   '7',   '8',   '9',   '0'],
+];
 export const CHARS = {
   'hira': hiragana,
   'kata': katakana,
   'kanji': [],
-  'alpha': alphaNum,
+  'latin': latins,
+  'num': nums,
 };
 
