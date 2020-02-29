@@ -1,4 +1,4 @@
-import Logo from '../../../assets/logo_00.png'
+import Logo from '../../../assets/logotype_01.png'
 import Hambuger from '../../atoms/hamburger';
 import {HEADER_HEIGHT, MAX_WIDTH} from '../../../utils/layout';
 
