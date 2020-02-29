@@ -12,7 +12,7 @@ const Header = (props) => {
       justifyContent: 'space-between',
     }}>
       <a href="/" native>
-        <img src={Logo} height={64} />
+        <img src={Logo} height={56} />
       </a>
 
       <Hambuger width={MAX_WIDTH} height={height}>

@@ -2,6 +2,10 @@
  * this style sheet is cited from https://github.com/jonsuh/hamburgers
  */
 
+.wrapper {
+  position: relative;
+}
+
 /*!
  * Hamburgers
  * @description Tasty CSS-animated hamburgers
@@ -11,7 +15,7 @@
  */
 .hamburger {
   /*padding: 15px 15px;*/
-  padding: 15px 0;
+  padding: 12px 0;
   display: inline-block;
   cursor: pointer;
   transition-property: opacity, filter;
@@ -109,6 +113,8 @@
  */
 .menuWrapper {
   position: absolute;
+  min-width: 240px;
+  right: 0;
   margin: 0 auto;
   z-index: 10;
   background-color: #fff;
