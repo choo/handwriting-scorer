@@ -146,6 +146,7 @@ const HandwritingCanvas = (props) => {
         <Grid flex={1} p='0 6px 0 0'>
           <SelectLineWeight
             onChangeWeight={props.setLineWeight}
+            weight={props.lineWeight}
           />
         </Grid>
         <Grid flex={2}>
