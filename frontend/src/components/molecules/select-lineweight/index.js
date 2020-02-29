@@ -42,6 +42,8 @@ const SelectLineWeight = (props) => {
                     textDecoration: 'none',
                     cursor: 'pointer',
                     borderBottom: '1px solid #bbb',
+                    backgroundColor: val === props.weight ? '#fffb74' : '',
+                    textAlign: 'center',
                   }}>
                     {val}px
                   </a>
