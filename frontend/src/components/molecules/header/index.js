@@ -11,7 +11,7 @@ const Header = (props) => {
       display: 'flex',
       justifyContent: 'space-between',
     }}>
-      <a href="/" native>
+      <a href="/" onClick={props.goToMain}>
         <img src={Logo} height={56} />
       </a>
 

@@ -29,20 +29,17 @@ const DetailRecord = (props) => {
   };
   return (
     <>
-      <h3>書いた文字一覧</h3>
-      <Grid container justify='space-between' m={'0 0 16px'}>
-        {colorDef.map((def, idx) => (
-          <Grid flex={1/2} key={idx}>
-            <div style={{
-                backgroundColor: def.color,
-                padding: '4px',
-                textAlign: 'center',
-            }}>
-              <span>{`${def.min}点〜`}</span>
-            </div>
-          </Grid>
-        ))}
+      <Grid container alignItems='center' m='20px 0 24px'>
+        <Grid flex={1}>
+          <h2 style={{margin: 0}}>書いた文字詳細</h2>
+        </Grid>
+        <Grid flex={1}>
+          <a href="/" onClick={props.goToMain} style={{textDecoration: 'none'}}>
+            <Button outlined>トップに戻る</Button>
+          </a>
+        </Grid>
       </Grid>
+
       <CharList
         kanjiInfo={props.kanjiInfo}
         makeButton={(charCode, charType, c) => 
@@ -52,8 +49,28 @@ const DetailRecord = (props) => {
             {c}
           </div>
         }
+        ScoreLegend={<ScoreLegend />}
       />
+
     </>
+  );
+};
+
+const ScoreLegend = props => {
+  return (
+    <Grid container m={'16px 0 4px'}>
+      {colorDef.map((def, idx) => (
+        <Grid flex={1/2} key={idx}>
+          <div style={{
+              backgroundColor: def.color,
+              padding: '4px',
+              textAlign: 'center',
+          }}>
+            <span>{`${def.min}点〜`}</span>
+          </div>
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

@@ -13,13 +13,17 @@ const Record = (props) => {
   }
   return (
     <>
-      <h2 class={style.tableTitle}>総合実績</h2>
+      <Grid container m='20px 0 8px'>
+        <Grid flex={1}>
+          <h2 style={{margin: 0}}>総合実績</h2>
+        </Grid>
+      </Grid>
       <RecordTable achivements={props.achivements} />
 
-      <Grid container justify="flex-end" m='20px 0 0'>
-        <Grid flex={2/3}>
-          <a href="/record/detail" style={{textDecoration: 'none'}}>
-            <Button outlined>書いた文字の一覧</Button>
+      <Grid container m='20px 0 32px'>
+        <Grid flex={1}>
+          <a href="/" onClick={props.goToMain} style={{textDecoration: 'none'}}>
+            <Button outlined>トップに戻る</Button>
           </a>
         </Grid>
       </Grid>
