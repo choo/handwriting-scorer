@@ -73,11 +73,15 @@ export default class App extends Component {
             lineWeight={this.state.lineWeight}
             setLineWeight={this.setLineWeight}
           />
-          <Record path="/record" achivements={this.state.achivements} />
+          <Record path="/record"
+            achivements={this.state.achivements}
+            goToMain={this.goToMain}
+          />
           <DetailRecord
             path="/record/detail"
             achivements={this.state.achivements}
             kanjiInfo={this.state.kanjiInfo}
+            goToMain={this.goToMain}
           />
         </Router>
       </Container>
