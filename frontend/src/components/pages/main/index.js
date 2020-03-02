@@ -1,5 +1,4 @@
 import { useState } from 'preact/hooks';
-import { enableBodyScroll, disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import {postImage} from '../../../utils/ajax';
 import {classifyChars} from '../../../utils/utils';
@@ -9,20 +8,12 @@ import HandwritingCanvas from './handwriting-canvas';
 import ResultsSelection from './results-selection';
 import ScoreDisplay from './score-display';
 
-if (typeof window !== "undefined") {
-  disableBodyScroll(window.document.body);
-}
-
 const Main = (props) => {
   const [imageBlob, setImageBlob] = useState(null);
   const [predicted, setPredicted] = useState([]);
   const [selected, setSelected] = useState({});
 
   const submitImage = async (imgBlob) => {
-    if (typeof window !== "undefined") {
-      enableBodyScroll(window.document.body);
-    }
-    clearAllBodyScrollLocks();
     props.setStatus(STATUS.SELECTING);
     setImageBlob(imgBlob);
     const result = await postImage('/api/predict', {uploadfile: imgBlob});
@@ -33,9 +24,6 @@ const Main = (props) => {
   const goBackHome = () => {
     props.setStatus(STATUS.WRITING);
     setPredicted([]);
-    if (typeof window !== "undefined") {
-      disableBodyScroll(window.document.body);
-    }
   };
 
   const selectChar = async (charCode) => {

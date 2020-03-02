@@ -2,12 +2,10 @@ import Grid from '../../atoms/grid';
 import Button from '../../atoms/button';
 import style from './style.css';
 import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../../utils/const';
-import {clearAllBodyScrollLocks } from 'body-scroll-lock';
 import RecordTable from '../../molecules/record-table'
 
 
 const Record = (props) => {
-  clearAllBodyScrollLocks();
   if (!props.achivements) {
     return null;
   }
