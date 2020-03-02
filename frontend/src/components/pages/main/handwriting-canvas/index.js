@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'preact/hooks';
 import Grid from '../../../atoms/grid';
 import Button from '../../../atoms/button';
 import SelectLineWeight from '../../../molecules/select-lineweight';
-import { disableBodyScroll } from 'body-scroll-lock';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import {CANVAS_BORDER} from '../../../../utils/layout';
 import {CANVAS_STROKE_COLOR} from '../../../../utils/const';
 
@@ -25,6 +25,9 @@ const HandwritingCanvas = (props) => {
   const [hasStarted, setHasStarted] = useState(false);
   useEffect(() => {
     if (!hasStarted) {
+      if (typeof window !== "undefined") {
+        window.scrollTo(0, 0);
+      }
       const canvas = canvasRef.current;
       const wrapper = canvas.parentElement;
       const size = wrapper.offsetWidth - (CANVAS_BORDER) * 2;
@@ -35,6 +38,13 @@ const HandwritingCanvas = (props) => {
     }
     setHasStarted(true);
   }, [hasStarted]);
+
+  // the same as componentWillUnmount
+  useEffect(() => {
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, []);
 
 
   const getContext = () => {
