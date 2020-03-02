@@ -15,7 +15,6 @@ const CharList = props => {
         //           '0 3px 1px -2px rgba(0,0,0,0.12), ' +
         //           '0 1px 5px 0 rgba(0,0,0,0.2)',
         border: '1px solid',
-        height: '36px',
       }}>
         {CHAR_TYPES.map(t => (
           <Grid flex={1}>
@@ -143,7 +142,6 @@ const CharTable = props => {
     <>
       {props.charInfo.map((row, i) => (
         <Grid container key={i} justify='space-between'>
-          <Grid flex={1/12}></Grid>
           {row.map((c, j) => {
             const charCode = '0x' + c.charCodeAt(0).toString(16)
             const p = {c: c, j: j, charCode: charCode, ...props};
@@ -151,7 +149,6 @@ const CharTable = props => {
               <CharTableCell {...p} />
             )
           })}
-          <Grid flex={1/12}></Grid>
         </Grid>
       ))}
     </>
@@ -161,7 +158,7 @@ const CharTable = props => {
 
 const CharTableCell = props => {
   return (
-    <Grid flex={1/6} p='2px 2px' key={props.j}>
+    <Grid flex={1/5} p='2px 2px' key={props.j}>
       {props.c && (
         props.makeButton ? (
           props.makeButton(props.charCode, props.charType, props.c)
