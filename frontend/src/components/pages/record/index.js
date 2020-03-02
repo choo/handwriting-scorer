@@ -15,7 +15,7 @@ const Record = (props) => {
     <>
       <Grid container m='20px 0 8px'>
         <Grid flex={1}>
-          <h2 style={{margin: 0}}>総合実績</h2>
+          <h3 style={{margin: 0}}>総合実績</h3>
         </Grid>
       </Grid>
       <RecordTable achivements={props.achivements} />

@@ -15,7 +15,6 @@ const CharList = props => {
         //           '0 3px 1px -2px rgba(0,0,0,0.12), ' +
         //           '0 1px 5px 0 rgba(0,0,0,0.2)',
         border: '1px solid',
-        height: '36px',
       }}>
         {CHAR_TYPES.map(t => (
           <Grid flex={1}>

@@ -30,10 +30,10 @@ const DetailRecord = (props) => {
   return (
     <>
       <Grid container alignItems='center' m='20px 0 24px'>
-        <Grid flex={1}>
-          <h2 style={{margin: 0}}>書いた文字詳細</h2>
+        <Grid flex={1/2}>
+          <h3 style={{margin: 0}}>書いた文字詳細</h3>
         </Grid>
-        <Grid flex={1}>
+        <Grid flex={1/2}>
           <a href="/" onClick={props.goToMain} style={{textDecoration: 'none'}}>
             <Button outlined>トップに戻る</Button>
           </a>
