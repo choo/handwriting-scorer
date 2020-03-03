@@ -22,22 +22,18 @@ const HandwritingCanvas = (props) => {
   const [hasInitialText, setHasInitialText] = useState(null);
 
   // initialization of canvas DOM
-  const [hasStarted, setHasStarted] = useState(false);
   useEffect(() => {
-    if (!hasStarted) {
-      if (typeof window !== "undefined") {
-        window.scrollTo(0, 0);
-      }
-      const canvas = canvasRef.current;
-      const wrapper = canvas.parentElement;
-      const size = wrapper.offsetWidth - (CANVAS_BORDER) * 2;
-      canvas.width  = size;
-      canvas.height = size;
-      resetCanvas();
-      disableBodyScroll(canvas);
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
     }
-    setHasStarted(true);
-  }, [hasStarted]);
+    const canvas = canvasRef.current;
+    const wrapper = canvas.parentElement;
+    const size = wrapper.offsetWidth - (CANVAS_BORDER) * 2;
+    canvas.width  = size;
+    canvas.height = size;
+    resetCanvas();
+    disableBodyScroll(canvas);
+  }, []);
 
   // the same as componentWillUnmount
   useEffect(() => {
