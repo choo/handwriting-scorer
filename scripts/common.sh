@@ -4,6 +4,6 @@ build_frontend() {
     npm install
     npm run build
 
-    rm -rf $BASEDIR/backend/build || true # ignore dir not found error
-    mv build $BASEDIR/backend
+    rm -rf $BASEDIR/backend/static || true # ignore dir not found error
+    mv build $BASEDIR/backend/static
 }
