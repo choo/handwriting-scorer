@@ -23,7 +23,7 @@ build_frontend
 # build container image
 cd ${BASEDIR}
 docker build -t ${IMAGE_NAME} .
-docker image tag ${IMAGE_NAME} ${IMAGE_NAME}:${TAG} \
+docker image tag ${IMAGE_NAME} ${IMAGE_NAME}:${TAG}
 #docker image tag ${IMAGE_NAME} \
 #                 ${IMAGE_REGISTRY}/${IMAGE_NAME}
 #docker image tag ${IMAGE_NAME} \
