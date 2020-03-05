@@ -5,7 +5,7 @@ certifi==2019.11.28
 chardet==3.0.4
 Click==7.0
 Flask==1.1.1
--e git://github.com/choo/fsutils@a6f17765123f63741bd37227d22231d0591c3578#egg=fsutils
+-e git+https://github.com/choo/fsutils@a6f17765123f63741bd37227d22231d0591c3578#egg=fsutils
 gast==0.2.2
 google-auth==1.9
 google-auth-oauthlib==0.4.1
