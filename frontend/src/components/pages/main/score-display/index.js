@@ -6,7 +6,8 @@ import RecordTable from '../../../molecules/record-table'
 
 /*
 ScoreDisplay.propTypes = {
-  chara: PropTypes.string.isRequired,
+  char: PropTypes.string.isRequired,
+  charCode: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
   imageBlob: PropTypes.instanceOf(Blob),
   onClickBack: PropTypes.func.isRequired,
@@ -35,7 +36,7 @@ const ScoreDisplay = props => {
               fontSize: '128px',
               fontFamily: "'Noto Serif JP', 'M PLUS Rounded 1c'",
             }}>
-              {props.chara}
+              {props.char}
             </span>
           </Grid>
         </Grid>
@@ -63,10 +64,13 @@ const ScoreDisplay = props => {
         </Grid>
 
         <Grid container justify="flex-end">
-          <Button outlined
-            onClick={props.onClickBack}
-            disabled // TODO: add function
-          >「{props.chara}」の満点の例を見る</Button>
+          <Grid flex={2/3}>
+            <a href={`/charinfo/${props.charCode}`}
+              style={{textDecoration: 'none'}}
+            >
+              <Button outlined >「{props.char}」の高得点の例を見る</Button>
+            </a>
+          </Grid>
         </Grid>
 
         <RecordTable achivements={props.achivements} />

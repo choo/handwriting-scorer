@@ -8,6 +8,7 @@ import init from '../utils/init';
 import {DEFAULT_LINE_WEIGHT, STATUS} from '../utils/const';
 import Record from './pages/record';
 import DetailRecord from './pages/detail-record';
+import CharInfo from './pages/charinfo';
 import {updateAchivements, summarizeAchivements} from '../utils/utils';
 import {doAjax} from '../utils/ajax';
 import {MAX_WIDTH, WINDOW_PADDING} from '../utils/layout';
@@ -79,6 +80,12 @@ export default class App extends Component {
           />
           <DetailRecord
             path="/record/detail"
+            achivements={this.state.achivements}
+            kanjiInfo={this.state.kanjiInfo}
+            goToMain={this.goToMain}
+          />
+          <CharInfo
+            path="/charinfo/:charCode"
             achivements={this.state.achivements}
             kanjiInfo={this.state.kanjiInfo}
             goToMain={this.goToMain}
