@@ -38,6 +38,7 @@ const Main = (props) => {
     props.setStatus(STATUS.SHOWING_SCORE);
     setSelected({
       char: String.fromCharCode(parseInt(charCode, 16)),
+      charCode: charCode,
       prob: prob,
       score: parseInt(score),
     });
@@ -68,7 +69,8 @@ const Main = (props) => {
         />
       ) : (
         <ScoreDisplay
-          chara={selected.char}
+          char={selected.char}
+          charCode={selected.charCode}
           score={selected.score}
           imageBlob={imageBlob}
           onClickBack={goBackHome}
