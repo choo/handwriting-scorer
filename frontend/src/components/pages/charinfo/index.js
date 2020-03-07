@@ -3,17 +3,23 @@ import Button from '../../atoms/button';
 import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../../utils/const';
 
 const BUCKET_URL = 'https://storage.googleapis.com/letters-sample-images';
+const IMAGE_DIR = 'pickup';
 
-// for test
-const sample = {
-  path: BUCKET_URL + '/test/ETL9G_001420.png',
-  score: 100,
+const makeUrl = (charCode, filename) => {
+  return `${BUCKET_URL}/${IMAGE_DIR}/${charCode}/${filename}`;
 };
-const IMAGES = [sample, sample, sample, sample];
 
 const CharInfo = (props) => {
+  const imageInfo = props.sampleImageInfo;
+  const sampleUrls = (imageInfo && imageInfo[props.charCode]) || [];
   const c = String.fromCharCode(parseInt(props.charCode, 16));
-  const samples = IMAGES;
+  const samples = [];
+  for (const imgUrl of sampleUrls) {
+    samples.push({
+      url: makeUrl(props.charCode, imgUrl),
+      score: 100
+    });
+  }
   return (
     <>
       <Grid container m='20px 0 8px' alignItems='baseline'>
@@ -30,17 +36,19 @@ const CharInfo = (props) => {
           flexWrap="wrap"
           alignItems="center"
         >
-          {samples.map(img => (
-            <Grid p='2px' style={{minWidth: '100px'}}>
+          {samples.length ? samples.map(img => (
+            <Grid p='2px' style={{width: '100px'}}>
               <img style={{width: '100%'}}
-                src={img.path}
+                src={img.url}
                 border={'1'}
               />
               <div style={{textAlign: 'center'}}>
                 <span>{img.score} 点</span>
               </div>
             </Grid>
-          ))}
+          )) : (
+            <span>まだ高得点の例はありません</span>
+          )}
         </Grid>
 
       <Grid container m='20px 0 32px'>

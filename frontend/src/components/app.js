@@ -20,8 +20,9 @@ export default class App extends Component {
     this.state = {
       achivements: null,
       mainStatus: 1,
-      kanjiInfo: null,
       lineWeight: DEFAULT_LINE_WEIGHT,
+      kanjiInfo: null,
+      sampleImageInfo: null,
     };
     this.currentAchivements = {};
     this.updateScores  = this.updateScores.bind(this);
@@ -38,6 +39,9 @@ export default class App extends Component {
         kanjiInfo: result.kanjiInfo,
       });
       this.currentAchivements = achieve;
+    });
+    import('../assets/sample_images.json').then(module => {
+      this.setState({sampleImageInfo: module.default});
     });
   }
 
@@ -86,6 +90,7 @@ export default class App extends Component {
           />
           <CharInfo
             path="/charinfo/:charCode"
+            sampleImageInfo={this.state.sampleImageInfo}
             achivements={this.state.achivements}
             kanjiInfo={this.state.kanjiInfo}
             goToMain={this.goToMain}
