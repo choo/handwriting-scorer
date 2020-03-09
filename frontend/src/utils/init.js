@@ -28,6 +28,15 @@ const init = () => {
     };
   }
 
+  if (!Object.values) {
+    Object.values = function( obj ){
+      var vals = Object.keys(obj).map(function(key) {
+        return obj[key];
+      });
+      return vals;
+    };
+  }
+
   return;
 };
 
