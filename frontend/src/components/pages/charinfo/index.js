@@ -2,6 +2,7 @@ import Grid from '../../atoms/grid';
 import Button from '../../atoms/button';
 import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../../utils/const';
 
+// FIXME: add css
 const BUCKET_URL = 'https://storage.googleapis.com/letters-sample-images';
 const IMAGE_DIR = 'pickup';
 
