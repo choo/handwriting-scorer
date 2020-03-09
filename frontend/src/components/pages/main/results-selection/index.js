@@ -18,7 +18,8 @@ const ResultsSelection = props => {
       <Grid container m='4px 0 0' alignItems='center'>
         <Grid p='0 6px 0 0' flex={1/3}>
           <img style={{width: '100%'}}
-            src={URL.createObjectURL(props.imageBlob)}
+            src={
+              props.imageBlob ? URL.createObjectURL(props.imageBlob) : ''}
             border={'1'}
             alt={'canvas content'}
           />
