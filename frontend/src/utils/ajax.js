@@ -41,4 +41,36 @@ const postImage = async (url, params) => {
   }
 };
 
-export {doAjax, postImage}
+
+/**
+ * for debugging without async
+ */
+const postImage_callback = (url, params, callback, errorCallback) => {
+  const form = new FormData();
+  for (const [k, v] of Object.entries(params)) {
+    form.append(k, v);
+  }
+  const config = {
+    headers: { 'content-type': 'multipart/form-data' }
+  };
+
+  axios.post(url, form, config).then(
+    (result) => {
+      if (callback) {
+        callback(result.data);
+      }
+    }
+  ).catch(
+    (error) => {
+      if (errorCallback) {
+        errorCallback(error);
+      } else {
+        console.log(`Error! HTTP Status: ${status} ${statusText}`);
+        console.log(error);
+      }
+    }
+  );
+};
+
+
+export {doAjax, postImage, postImage_callback}
