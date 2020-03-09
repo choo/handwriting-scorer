@@ -14,15 +14,15 @@ const Main = (props) => {
   const [selected, setSelected] = useState({});
 
   const submitImage = async (imgBlob) => {
-    props.setStatus(STATUS.SELECTING);
     setImageBlob(imgBlob);
+    props.setMainStatus(STATUS.SELECTING);
     const result = await postImage('/api/predict', {uploadfile: imgBlob});
     if (result && result.predicted) {
       setPredicted(result.predicted);
     }
   };
   const goBackHome = () => {
-    props.setStatus(STATUS.WRITING);
+    props.setMainStatus(STATUS.WRITING);
     setPredicted([]);
   };
 
@@ -35,7 +35,7 @@ const Main = (props) => {
       }
     }
     const score = (-((1.0 - prob) ** (1 / 3) - 1)) * 100.0;
-    props.setStatus(STATUS.SHOWING_SCORE);
+    props.setMainStatus(STATUS.SHOWING_SCORE);
     setSelected({
       char: String.fromCharCode(parseInt(charCode, 16)),
       charCode: charCode,
@@ -53,13 +53,13 @@ const Main = (props) => {
 
   return (
     <div>
-      {props.status === STATUS.WRITING ? (
+      {props.mainStatus === STATUS.WRITING ? (
         <HandwritingCanvas
           onScore={submitImage}
           lineWeight={props.lineWeight}
           setLineWeight={props.setLineWeight}
         />
-      ) : props.status === STATUS.SELECTING ? (
+      ) : props.mainStatus === STATUS.SELECTING ? (
         <ResultsSelection
           predicted={classifyChars(predicted)}
           imageBlob={imageBlob}
