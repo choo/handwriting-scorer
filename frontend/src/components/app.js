@@ -54,8 +54,8 @@ export default class App extends Component {
   setLineWeight(weight) {
     this.setState({lineWeight: weight});
   }
-  setMainStatus(status) {
-    this.setState({mainStatus: status});
+  setMainStatus(mainStatus) {
+    this.setState({mainStatus: mainStatus});
   }
   goToMain() {
     this.setMainStatus(STATUS.WRITING);
@@ -73,8 +73,8 @@ export default class App extends Component {
             achivements={this.state.achivements}
             kanjiInfo={this.state.kanjiInfo}
             updateScores={this.updateScores}
-            status={this.state.mainStatus}
-            setStatus={this.setMainStatus}
+            mainStatus={this.state.mainStatus}
+            setMainStatus={this.setMainStatus}
             lineWeight={this.state.lineWeight}
             setLineWeight={this.setLineWeight}
           />
