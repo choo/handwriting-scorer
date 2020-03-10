@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks';
 
 import Grid from '../../atoms/grid';
+import GridList from '../../atoms/gridlist';
 import CharTableCell from '../chartable-cell'
 
 const ROW_SIZE = 5;
@@ -101,7 +102,7 @@ const range = (start, end) => {
 
 
 const KanjiTypeButtons = props => (
-  <FlexWrapTable
+  <GridList
     elms={props.elms}
     width={4}
     makeCell={(info, key) => (
@@ -122,7 +123,7 @@ const KanjiTypeButtons = props => (
 
 const SortButtons = props => (
   <div style={{margin: '8px 0 8px'}}>
-    <FlexWrapTable
+    <GridList
       elms={props.elms}
       width={props.elms.length}
       makeCell={(info, key) => (
@@ -146,7 +147,7 @@ const SimplePagination = props => {
   const pages = range(1, props.pageNum + 1);
   return (
     <div style={{margin: '8px 0 8px'}}>
-      <FlexWrapTable
+      <GridList
         elms={pages}
         width={8}
         makeCell={(p, key) => (
@@ -167,7 +168,7 @@ const SimplePagination = props => {
 
 
 const KanjiTableBlock = props => (
-  <FlexWrapTable
+  <GridList
     elms={props.chars}
     width={ROW_SIZE}
     p={'2px'}
@@ -181,41 +182,6 @@ const KanjiTableBlock = props => (
     }}
   />
 );
-
-
-/**
- * props {
- *  elms,
- *  width,
- *  makeCell(),
- * }
- */
-const FlexWrapTable = props => {
-  const n = props.elms.length;
-  const w = props.width;
-  const r = Math.ceil(n / w);
-  const ret = [];
-  for (let y = 0; y < r; y++) {
-    const rowElms = props.elms.slice(y * w, (y + 1) * w);
-    const lack = w - rowElms.length;
-    for (let _ = 0; _ < lack; _++) {
-      rowElms.push(null);
-    }
-    ret.push(
-      <Grid container key={y} justify='space-between' alignItems='stretch'>
-        {rowElms.map((info, x) => {
-          const idx = w * y + x;
-          return (
-            <Grid flex={1/w} p={props.p || ''} key={idx}>
-              {info ? props.makeCell(info, idx) : null}
-            </Grid>
-          );
-        })}
-      </Grid>
-    );
-  }
-  return ret;
-};
 
 
 export default KanjiTable;
