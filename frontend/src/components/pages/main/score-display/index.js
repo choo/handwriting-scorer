@@ -45,6 +45,7 @@ const ScoreDisplay = props => {
           //justify="flex-end"
           justify="space-evenly"
           alignItems="flex-end"
+          m='-56px 0 0'
         >
           <Grid flex={1/4}>
           </Grid>
@@ -52,7 +53,7 @@ const ScoreDisplay = props => {
             <AnimationCounter
               initial={0}
               target={props.score}
-              style={{fontSize: '96px', color: '#ff0000'}}
+              style={{fontSize: '128px', color: '#ff0000'}}
             />
           </Grid>
           <Grid flex={1/4}>
