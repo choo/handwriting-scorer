@@ -1,24 +1,9 @@
-.tableTitle {
-  margin: 12px 0 0;
-}
 
-table.recTable {
+.image {
   width: 100%;
-  border-collapse: collapse;
+  border: 1px solid #000;
 }
-
-td.head {
-  width: 33%;
-}
-table.recTable td.mid {
-  width: 30%;
-  border-right: 0px;
-}
-table.recTable td.last {
-  border-left: 0px;
-}
-
-table.recTable td {
-  border: 1px solid black;
-  padding: 6px;
+.score {
+  text-align: center;
+  margin: -6px 0px 8px;
 }

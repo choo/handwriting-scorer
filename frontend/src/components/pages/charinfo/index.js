@@ -1,8 +1,9 @@
 import Grid from '../../atoms/grid';
+import GridList from '../../atoms/gridlist';
 import Button from '../../atoms/button';
 import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../../utils/const';
+import style from './style.css'
 
-// FIXME: add css
 const BUCKET_URL = 'https://storage.googleapis.com/letters-sample-images';
 const IMAGE_DIR = 'pickup';
 
@@ -33,24 +34,25 @@ const CharInfo = (props) => {
           <h2>の高得点の例</h2>
       </Grid>
 
-        <Grid container
-          flexWrap="wrap"
-          alignItems="center"
-        >
-          {samples.length ? samples.map(img => (
-            <Grid p='2px' style={{width: '100px'}}>
-              <img style={{width: '100%'}}
-                src={img.url}
-                border={'1'}
+      {samples.length ? (
+        <GridList
+          elms={samples}
+          width={3}
+          p={'2px'}
+          makeCell={(info, key) => (
+            <>
+              <img class={style.image}
+                src={info.url}
               />
-              <div style={{textAlign: 'center'}}>
-                <span>{img.score} 点</span>
+              <div class={style.score}>
+                <span>{info.score} 点</span>
               </div>
-            </Grid>
-          )) : (
-            <span>まだ高得点の例はありません</span>
+            </>
           )}
-        </Grid>
+        />
+      ) : (
+        <span>まだ高得点の例はありません</span>
+      )}
 
       <Grid container m='20px 0 32px'>
         <Grid flex={1}>
