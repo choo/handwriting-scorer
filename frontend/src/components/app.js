@@ -64,7 +64,7 @@ export default class App extends Component {
   render() {
     return (
       <Container style={{
-        padding: `0 ${WINDOW_PADDING}px`,
+        padding: `0 ${WINDOW_PADDING}px 64px`,
         maxWidth: `${MAX_WIDTH}px`}}
       >
         <Header goToMain={this.goToMain} />
