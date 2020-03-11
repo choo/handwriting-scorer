@@ -5,6 +5,7 @@ import GridList from '../../atoms/gridlist';
 import CharTableCell from '../chartable-cell'
 
 const ROW_SIZE = 5;
+const KANJI_TYPE_WIDTH = 4;
 const PAGE_SIZE = 100;
 const PAGE_BUTTON_WIDTH = 6;
 
@@ -105,7 +106,7 @@ const range = (start, end) => {
 const KanjiTypeButtons = props => (
   <GridList
     elms={props.elms}
-    width={4}
+    width={KANJI_TYPE_WIDTH}
     makeCell={(info, key) => (
       <button onClick={() => props.updateType(key)}
         style={{
