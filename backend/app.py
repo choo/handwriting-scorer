@@ -19,7 +19,6 @@ model.setup()
 KANJI_INFO_JSON = os.environ['KANJI_INFO_JSON']
 GCS_BUCKET_NAME = os.environ['GCS_BUCKET_NAME']
 gcs_utils = GCSUtils()
-kanji_info = fsutils.read_json(KANJI_INFO_JSON)
 
 
 def _make_token(num_bytes=16):
@@ -106,7 +105,6 @@ def fetch_summary():
     return make_response(jsonify({
         'status': 'ok',
         'achivements': achivements,
-        'kanjiInfo': kanji_info,
     }))
 
 ''' static html '''
