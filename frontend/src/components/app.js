@@ -36,9 +36,11 @@ export default class App extends Component {
       const achieve = summarizeAchivements(result.achivements);
       this.setState({
         achivements: achieve,
-        kanjiInfo: result.kanjiInfo,
       });
       this.currentAchivements = achieve;
+    });
+    import('../assets/kanji_data.json').then(module => {
+      this.setState({kanjiInfo: module.default});
     });
     import('../assets/sample_images.json').then(module => {
       this.setState({sampleImageInfo: module.default});
