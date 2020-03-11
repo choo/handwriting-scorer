@@ -6,6 +6,7 @@ import CharTableCell from '../chartable-cell'
 
 const ROW_SIZE = 5;
 const PAGE_SIZE = 100;
+const PAGE_BUTTON_WIDTH = 6;
 
 const KANJI_TYPES = [
   {title: '小学１年生', eduYear: 1},
@@ -149,7 +150,7 @@ const SimplePagination = props => {
     <div style={{margin: '8px 0 8px'}}>
       <GridList
         elms={pages}
-        width={8}
+        width={PAGE_BUTTON_WIDTH}
         makeCell={(p, key) => (
           <button onClick={() => props.setPage(p)}
             style={{
