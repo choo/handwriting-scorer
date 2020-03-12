@@ -64,21 +64,21 @@ const ScoreDisplay = props => {
           </Grid>
         </Grid>
 
-        <Grid container justify="flex-end">
-          <Grid flex={2/3}>
+        <Grid container m='4px 0 6px'>
+          <Grid flex={2/3} p='0 6px 0 0'>
             <a href={`/charinfo/${props.charCode}`}
               style={{textDecoration: 'none'}}
             >
-              <Button outlined >「{props.char}」の高得点の例を見る</Button>
+              <Button outlined >「{props.char}」の高得点の例</Button>
             </a>
+          </Grid>
+          <Grid flex={1/3}>
+            <Button outlined onClick={props.onClickBack}>戻る</Button>
           </Grid>
         </Grid>
 
         <RecordTable achivements={props.achivements} />
 
-        <Grid m='24px 0 32px'>
-          <Button outlined onClick={props.onClickBack}>戻る</Button>
-        </Grid>
       </>
   )
 };

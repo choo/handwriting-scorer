@@ -36,6 +36,7 @@ const RecordTable = props => {
       </Grid>
 
       <Grid container justify="flex-end">
+        <Grid flex={1/3}></Grid>
         <Grid flex={2/3}>
           <a href="/record/detail" style={{textDecoration: 'none'}}>
             <Button outlined>実績の詳細</Button>
