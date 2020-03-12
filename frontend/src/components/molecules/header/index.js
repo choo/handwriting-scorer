@@ -41,7 +41,7 @@ const Header = (props) => {
           }}>
             My Records
           </a>
-          <a href="#" style={{
+          <a href="/about" style={{
             color: '#000',
             display: 'block',
             padding: '20px',
