@@ -99,6 +99,9 @@ const SelectSuggestion = props => {
                 </Grid>
               )
             })}
+            {chars.length < NUM_DISPLAY && (
+                <Grid flex={(NUM_DISPLAY - chars.length)/6} m='2px' />
+            )}
             </Grid>
           </Grid>
         )
