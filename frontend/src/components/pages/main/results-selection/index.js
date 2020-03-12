@@ -36,6 +36,7 @@ const ResultsSelection = props => {
             onSelectChar={props.onSelectChar}
           />
           <Grid container justify='flex-end' m='4px 0 8px' key={0}>
+            <Grid flex={1/4}></Grid>
             <Grid flex={3/4}>
               <Button outlined onClick={toggleCustom}>
                 他の文字から選ぶ
@@ -46,6 +47,7 @@ const ResultsSelection = props => {
       ) : (
         <>
           <Grid container justify='flex-end' m='4px 0 12px' key={1}>
+            <Grid flex={1/4}></Grid>
             <Grid flex={3/4}>
               <Button outlined onClick={toggleCustom}>
                 提案された文字から選ぶ
