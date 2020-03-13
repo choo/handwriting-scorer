@@ -1,6 +1,7 @@
 import Popup from '../../atoms/popup';
 
 import Wording   from '../../../utils/lang';
+import style from './style.css'
 
 const LANG = 'ja'
 const WEIGHT_OPTIONS = [2,5,10,15,20,25,30];
@@ -33,17 +34,11 @@ const SelectLineWeight = (props) => {
                 // FIXME: add checked icon
                 return (
                   <a key={val}
+                    class={style.selection}
                     selected={val === props.weight}
                     onClick={() => handleClickItem(val)}
                     style={{
-                    color: '#000',
-                    display: 'block',
-                    padding: '10px',
-                    textDecoration: 'none',
-                    cursor: 'pointer',
-                    borderBottom: '1px solid #bbb',
-                    backgroundColor: val === props.weight ? '#fffb74' : '',
-                    textAlign: 'center',
+                      backgroundColor: val === props.weight ? '#ffb6b6' : '',
                   }}>
                     {val}px
                   </a>
