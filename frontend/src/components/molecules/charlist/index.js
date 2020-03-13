@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks';
 
 import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../../utils/const';
+import {getActiveColor} from '../../../utils/layout';
 
 import Grid from '../../atoms/grid';
 import KanjiTable from '../kanji-table'
@@ -23,7 +24,7 @@ const CharList = props => {
               style={{
                 width: '100%',
                 height: '70px',
-                backgroundColor: charType === t ? '#fff826' : '#fff',
+                backgroundColor: getActiveColor(charType, t),
                 fontSize: '12px',
               }}
             >

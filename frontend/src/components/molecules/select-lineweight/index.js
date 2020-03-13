@@ -1,7 +1,8 @@
 import Popup from '../../atoms/popup';
 
 import Wording   from '../../../utils/lang';
-import style from './style.css'
+import {getActiveColor} from '../../../utils/layout';
+import style from './style.css';
 
 const LANG = 'ja'
 const WEIGHT_OPTIONS = [2,5,10,15,20,25,30];
@@ -38,7 +39,7 @@ const SelectLineWeight = (props) => {
                     selected={val === props.weight}
                     onClick={() => handleClickItem(val)}
                     style={{
-                      backgroundColor: val === props.weight ? '#ffb6b6' : '',
+                      backgroundColor: getActiveColor(val, props.weight),
                   }}>
                     {val}px
                   </a>
