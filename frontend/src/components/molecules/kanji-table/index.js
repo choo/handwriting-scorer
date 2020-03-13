@@ -22,12 +22,12 @@ const KANJI_TYPES = [
 const SORT_TYPES = [
   {name: '総画数順', param: 'sokaku'},
   //{name: '部首', param: 'busyu'},
-  {name: '文字コード順', param: ''},
+  {name: '文字コード順', param: 'code'},
 ]
 
 const KanjiTable = props => {
   const [kanjiType, setKanjiType] = useState(0);
-  const [sort, setSort] = useState('');
+  const [sort, setSort] = useState('sokaku');
   const [page, setPage] = useState(1);
 
   const updateType = type => {
