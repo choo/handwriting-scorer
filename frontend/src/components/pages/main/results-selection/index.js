@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 import {shuffleArray} from '../../../../utils/utils';
 import {CHAR_DISPLAYS} from '../../../../utils/const';
-import {NUM_DISPLAY} from '../../../../utils/const';
+import {NUM_DISPLAY_ROW} from '../../../../utils/const';
 
 import CharList from '../../../molecules/charlist';
 
@@ -80,7 +80,7 @@ const SelectSuggestion = props => {
               <span>{CHAR_DISPLAYS[charType]}</span>
             </Grid>
             <Grid container flex={3/4}  flexWrap={'wrap'}>
-            {shuffleArray(chars.slice(0, NUM_DISPLAY)).map(result => {
+            {shuffleArray(chars.slice(0, NUM_DISPLAY_ROW)).map(result => {
               const charCode = result[0];
               return (
                 <Grid flex={1/6} m='2px' key={charCode}>
@@ -99,8 +99,8 @@ const SelectSuggestion = props => {
                 </Grid>
               )
             })}
-            {chars.length < NUM_DISPLAY && (
-                <Grid flex={(NUM_DISPLAY - chars.length)/6} m='2px' />
+            {chars.length < NUM_DISPLAY_ROW && (
+                <Grid flex={(NUM_DISPLAY_ROW - chars.length)/6} m='2px' />
             )}
             </Grid>
           </Grid>

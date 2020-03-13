@@ -2,7 +2,7 @@ import { useState } from 'preact/hooks';
 
 import {postImage} from '../../../utils/ajax';
 import {classifyChars} from '../../../utils/utils';
-import {STATUS} from '../../../utils/const';
+import {STATUS, NUM_DISPLAY} from '../../../utils/const';
 
 import HandwritingCanvas from './handwriting-canvas';
 import ResultsSelection from './results-selection';
@@ -61,7 +61,9 @@ const Main = (props) => {
         />
       ) : props.mainStatus === STATUS.SELECTING ? (
         <ResultsSelection
-          predicted={classifyChars(predicted)}
+          predicted={
+            classifyChars(predicted.slice(0, NUM_DISPLAY))
+          }
           imageBlob={imageBlob}
           onSelectChar={selectChar}
           onClickBack={goBackHome}
