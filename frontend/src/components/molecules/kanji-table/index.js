@@ -4,6 +4,8 @@ import Grid from '../../atoms/grid';
 import GridList from '../../atoms/gridlist';
 import CharTableCell from '../chartable-cell'
 
+import {getActiveColor} from '../../../utils/layout';
+
 const ROW_SIZE = 5;
 const KANJI_TYPE_WIDTH = 4;
 const PAGE_SIZE = 100;
@@ -112,7 +114,7 @@ const KanjiTypeButtons = props => (
         style={{
           width: '100%',
           height: '60px',
-          backgroundColor: props.kanjiType === key ? '#fff826' : '#fff',
+          backgroundColor: getActiveColor(props.kanjiType, key),
           fontSize: '12px',
         }}
       >
@@ -133,7 +135,7 @@ const SortButtons = props => (
           style={{
             width: '100%',
             height: '48px',
-            backgroundColor: props.sort === info.param ? '#fff826' : '#fff',
+            backgroundColor: getActiveColor(props.sort, info.param),
             fontSize: '14px',
           }}
         >
@@ -156,7 +158,7 @@ const SimplePagination = props => {
           <button onClick={() => props.setPage(p)}
             style={{
               width: '100%',
-              backgroundColor: props.page === p ? '#fff826' : '#fff',
+              backgroundColor: getActiveColor(props.page, p),
               fontSize: '14px',
             }}
           >
