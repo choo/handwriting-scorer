@@ -1,3 +1,13 @@
+.scoreImage {
+  position: absolute;
+  top: -10%;
+  left: 10%;
+  z-index: 100;
+}
+
+.btn {
+}
+
 .charBox {
   min-width: 48px;
   padding: 4px;

@@ -3,29 +3,36 @@ import Button from '../../atoms/button';
 import CharList from '../../molecules/charlist';
 import style from './style.css'
 
+import Circle from '../../../assets/score/circle.png'
+import DoubleCircle from '../../../assets/score/double_circle.png'
+import Triangle from '../../../assets/score/triangle.png'
+//import Hanamaru from '../../../assets/score/hanamaru.png'
+import FullScore from '../../../assets/score/fullscore.png'
 
-const colorDef = [
-  {min: 90, color: '#ff6d6d'},
-  {min: 50, color: '#ff9191'},
-  {min: 10, color: '#ffb6b6'},
-  {min:  0, color: '#ffdada'},
+
+const IconDef = [
+  {min: 100, icon: FullScore},
+  //{min:  90, icon: Hanamaru},
+  {min:  80, icon: DoubleCircle},
+  {min:  50, icon: Circle},
+  {min:   0, icon: Triangle},
 ];
 
 const DetailRecord = (props) => {
   const achivements = props.achivements || {};
-  const getButtonColor = (charType, c) => {
-    let color = '#fff';
+  const getIcon = (charType, c) => {
     if (achivements.byType &&
         achivements.byType[charType].byChar[c]) {
       const props = achivements.byType[charType].byChar[c];
-      for (const def of colorDef) {
+      for (const def of IconDef) {
         if (props.max >= def.min) {
-          color = def.color;
-          break;
+          return (
+            <img src={def.icon} class={` ${style.btn} ${style.scoreImage}`} />
+          );
         }
       }
     }
-    return color;
+    return null;
   };
   return (
     <>
@@ -43,11 +50,12 @@ const DetailRecord = (props) => {
       <CharList
         kanjiInfo={props.kanjiInfo}
         makeButton={(charCode, charType, c) => 
-          <div class={style.charBox} style={{
-              backgroundColor: getButtonColor(charType, c),
-          }}>
-            {c}
-          </div>
+            <div class={style.charBox} style={{
+                position: 'relative',
+            }}>
+              {c}
+              {getIcon(charType, c)}
+            </div>
         }
         ScoreLegend={<ScoreLegend />}
       />
@@ -59,14 +67,14 @@ const DetailRecord = (props) => {
 const ScoreLegend = props => {
   return (
     <Grid container m={'16px 0 4px'}>
-      {colorDef.map((def, idx) => (
+      {IconDef.map((def, idx) => (
         <Grid flex={1/2} key={idx}>
           <div style={{
-              backgroundColor: def.color,
               padding: '4px',
               textAlign: 'center',
           }}>
-            <span>{`${def.min}点〜`}</span>
+            <div>{`${def.min}点〜`}</div>
+            <img src={def.icon} />
           </div>
         </Grid>
       ))}
