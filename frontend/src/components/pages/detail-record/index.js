@@ -34,6 +34,9 @@ const DetailRecord = (props) => {
     }
     return null;
   };
+  const selectChar = (charCode) => {
+    location.href = `/charinfo/${charCode}`;
+  };
   return (
     <>
       <Grid container alignItems='center' m='20px 0 24px'>
@@ -49,14 +52,12 @@ const DetailRecord = (props) => {
 
       <CharList
         kanjiInfo={props.kanjiInfo}
-        makeButton={(charCode, charType, c) => 
-            <div class={style.charBox} style={{
-                position: 'relative',
-            }}>
+        makeButton={(charCode, charType, c) => (
+            <div class={style.charBox} onClick={() => selectChar(charCode)}>
               {c}
               {getIcon(charType, c)}
             </div>
-        }
+        )}
         ScoreLegend={<ScoreLegend />}
       />
 
