@@ -1,0 +1,9 @@
+selection {
+   color: #000;
+   display: block;
+   padding: 10px;
+   text-decoration: none;
+   cursor: pointer;
+   border-bottom: 1px solid #bbb;
+   text-align: center;
+}
