@@ -1,0 +1,8 @@
+.item {
+  color: #000;
+  display: block;
+  padding: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid #bbb;
+}
