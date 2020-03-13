@@ -6,7 +6,8 @@ export const STATUS = {
   SELECTING: 2,
   SHOWING_SCORE: 3,
 };
-export const NUM_DISPLAY = 4;
+export const NUM_DISPLAY = 10;
+export const NUM_DISPLAY_ROW = 4;
 export const CHAR_TYPES = ['hira', 'kata', 'kanji', 'latin', 'num'];
 export const CHAR_DISPLAYS = {
   'hira': 'ひらがな',
