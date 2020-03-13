@@ -34,8 +34,6 @@ const CharList = props => {
         ))}
       </Grid>
 
-      {props.ScoreLegend || null }
-
       <Grid p='4px 12px 4px' m='0 0 24px'>
         {charType === 'kanji' ? (
           <KanjiTable
@@ -53,6 +51,8 @@ const CharList = props => {
           />
         )}
       </Grid>
+
+      {props.ScoreLegend || null }
     </>
   );
 };
