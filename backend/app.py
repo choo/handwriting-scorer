@@ -16,7 +16,6 @@ app = Flask(__name__, static_folder=STATIC_DIR)
 model = Model()
 model.setup()
 
-KANJI_INFO_JSON = os.environ['KANJI_INFO_JSON']
 GCS_BUCKET_NAME = os.environ['GCS_BUCKET_NAME']
 gcs_utils = GCSUtils()
 
