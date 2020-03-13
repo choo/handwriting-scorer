@@ -40,7 +40,7 @@ const Main = (props) => {
       char: String.fromCharCode(parseInt(charCode, 16)),
       charCode: charCode,
       prob: prob,
-      score: parseInt(score),
+      score: Math.max(parseInt(score), 1),
     });
     props.updateScores(charCode, score);
     const result = await postImage('/api/upload', {
