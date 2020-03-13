@@ -100,6 +100,9 @@ const HandwritingCanvas = (props) => {
   }
 
   const updateCanvas = () => {
+    if (hasInitialText) {
+      return;
+    }
     const canvas = canvasRef.current;
     canvas.toBlob(blob => {
       resetCanvas();
