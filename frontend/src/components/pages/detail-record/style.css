@@ -5,10 +5,9 @@
   z-index: 100;
 }
 
-.btn {
-}
-
 .charBox {
+  cursor: pointer;
+  position: relative;
   min-width: 48px;
   padding: 4px;
   text-align: center;
