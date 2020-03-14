@@ -5,8 +5,12 @@
   z-index: 100;
 }
 
+.charBoxWrapper {
+  text-decoration: none;
+  color: #000;
+}
+
 .charBox {
-  cursor: pointer;
   position: relative;
   min-width: 48px;
   padding: 4px;
