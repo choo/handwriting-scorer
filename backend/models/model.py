@@ -20,7 +20,6 @@ keras.backend.set_session(session)
 class Model(object):
 
     data_dir = '{}/data'.format(os.path.dirname(__file__))
-    log_dir  = '{}/log'.format(os.path.dirname(__file__))
     config_path = '{}/config.yml'.format(data_dir)
     preprocess_funcs = {
         'mobilenet_v2': mobilenet_v2.preprocess_input,
