@@ -56,17 +56,13 @@ class Model(object):
         self.input_shape = self.loaded_model.input_shape[1:] # (h, w, c)
 
     def predict(self, blob):
-
         img = Image.open(blob).convert("L")
         img = img.resize((self.input_shape[1], self.input_shape[0]))
 
         np_img = np.array(img)
         np_img = np_img.reshape((1,) + self.input_shape)
         np_img = self.preprocess_func(np_img)
-
-        start = time.time()
         results = self._predict(np_img)
-        print("prediction took : {} ms".format((time.time() - start) * 1000.0))
 
         ret = []
         sorted_idx = np.argsort(results[0])[::-1]
