@@ -68,8 +68,10 @@ class Model(object):
         sorted_idx = np.argsort(results[0])[::-1]
         for idx in sorted_idx[:self.num_return_candidate]:
             label_name = self.label_info[idx]
-            prob = float(results[0][idx])
-            ret.append((label_name, prob)) # (label, probability)
+            prob  = float(results[0][idx])
+            score = (-((1.0 - prob) ** (1 / 3) - 1)) * 100.0;
+            score = max(int(score), 1)
+            ret.append((label_name, prob, score)) # (label, probability, score)
 
         return ret
 

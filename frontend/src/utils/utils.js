@@ -132,11 +132,11 @@ const classifyChars = chars => {
     'num'  : [],
   };
 
-  for (const [charCode, _] of chars) {
-    const c = String.fromCharCode(parseInt(charCode, 16))
+  for (const charInfo of chars) {
+    const c = String.fromCharCode(parseInt(charInfo[0], 16))
     const type = _classifyChar(c);
     if (type) {
-      ret[type].push([charCode, _]);
+      ret[type].push(charInfo);
     }
   }
   return Object.entries(ret);
