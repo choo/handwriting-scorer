@@ -27,20 +27,20 @@ const Main = (props) => {
   };
 
   const selectChar = async (charCode) => {
-    let prob = 0.0;
-    for (const [code, p] of predicted) {
+    let prob = 0.0, score = 1;
+    for (const [code, p, s] of predicted) {
       if (code === charCode) {
         prob = p;
+        score = s;
         break;
       }
     }
-    const score = (-((1.0 - prob) ** (1 / 3) - 1)) * 100.0;
     props.setMainStatus(STATUS.SHOWING_SCORE);
     setSelected({
       char: String.fromCharCode(parseInt(charCode, 16)),
       charCode: charCode,
       prob: prob,
-      score: Math.max(parseInt(score), 1),
+      score: score,
     });
     props.updateScores(charCode, score);
     const result = await postImage('/api/upload', {
