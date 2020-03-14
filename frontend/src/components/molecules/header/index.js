@@ -24,7 +24,7 @@ const Header = (props) => {
         }}>
           <a href="/" onClick={props.goToMain} class={style.item}>トップ</a>
           <a href="/record" class={style.item}>採点実績</a>
-          <a href="/about" class={style.item}>サービスについて</a>
+          <a href="/about" class={style.item}>このサービスについて</a>
         </div>
       </Hambuger>
     </header>
