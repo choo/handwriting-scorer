@@ -24,6 +24,7 @@ export const CHAR_COUNTS = {
   'kanji': 2967,
   'total': 3175,
 }
+export const SAMPLE_IMAGE_DIR = '20200314';
 
 const hiragana = [
   ['あ', 'い', 'う', 'え', 'お'],

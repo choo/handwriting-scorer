@@ -1,25 +1,27 @@
 import Grid from '../../atoms/grid';
 import GridList from '../../atoms/gridlist';
 import Button from '../../atoms/button';
-import {CHAR_TYPES, CHAR_DISPLAYS, CHARS} from '../../../utils/const';
+import {CHAR_TYPES, CHAR_DISPLAYS, CHARS, SAMPLE_IMAGE_DIR} from '../../../utils/const';
 import style from './style.css'
 
 const BUCKET_URL = 'https://storage.googleapis.com/letters-sample-images';
-const IMAGE_DIR = 'pickup';
 
 const makeUrl = (charCode, filename) => {
-  return `${BUCKET_URL}/${IMAGE_DIR}/${charCode}/${filename}`;
+  return `${BUCKET_URL}/${SAMPLE_IMAGE_DIR}/${charCode}/${filename}`;
 };
 
 const CharInfo = (props) => {
   const imageInfo = props.sampleImageInfo;
-  const sampleUrls = (imageInfo && imageInfo[props.charCode]) || [];
+  console.log(props.charCode);
+  console.log(imageInfo);
+  const sampleImages = (imageInfo && imageInfo[props.charCode]) || [];
   const c = String.fromCharCode(parseInt(props.charCode, 16));
   const samples = [];
-  for (const imgUrl of sampleUrls) {
+  for (const imgInfo of sampleImages) {
+    console.log(imgInfo);
     samples.push({
-      url: makeUrl(props.charCode, imgUrl),
-      score: 100
+      url: makeUrl(props.charCode, imgInfo.name),
+      score: imgInfo.score,
     });
   }
   return (
