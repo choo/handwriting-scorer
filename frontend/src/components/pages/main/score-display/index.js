@@ -41,28 +41,22 @@ const ScoreDisplay = props => {
           </Grid>
         </Grid>
 
-        <Grid container
-          //justify="flex-end"
-          justify="space-evenly"
-          alignItems="flex-end"
-          m='-56px 0 0'
-        >
-          <Grid flex={1/4}>
-          </Grid>
-          <Grid flex={2/4} style={{textAlign: 'center'}}>
+        <div style={{position: 'relative', margin: '-56px 0 0'}}>
+          <div style={{textAlign: 'center'}}>
             <AnimationCounter
               initial={0}
               target={props.score}
               style={{fontSize: '128px', color: '#ff0000'}}
             />
-          </Grid>
-          <Grid flex={1/4}>
-            <span style={{
-              bottom: '30px',
-              position: 'relative',
-            }}>点 / 100</span>
-          </Grid>
-        </Grid>
+          </div>
+          <div style={{
+            position: 'absolute',
+            bottom: '30px',
+            right: 0,
+          }}>
+            <span>点 / 100</span>
+          </div>
+        </div>
 
         <Grid container m='4px 0 6px'>
           <Grid flex={2/3} p='0 6px 0 0'>
