@@ -67,7 +67,7 @@ const CharTable = props => {
       {props.charInfo.map((row, i) => (
         <Grid container key={i} justify='space-between'>
           {row.map((c, j) => {
-            const charCode = '0x' + c.charCodeAt(0).toString(16)
+            const charCode = '0x' + c.charCodeAt(0).toString(16).padStart(4, '0');
             const p = {c: c, j: j, charCode: charCode, ...props};
             return (
               <Grid flex={1/5} p={'2px'} key={props.key}>

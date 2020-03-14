@@ -178,7 +178,7 @@ const KanjiTableBlock = props => (
     p={'2px'}
     makeCell={(info, key) => {
       const c = info.title;
-      const charCode = '0x' + c.charCodeAt(0).toString(16)
+      const charCode = '0x' + c.charCodeAt(0).toString(16).padStart(4, '0');
       const newProps = {c: c, key: key, charCode: charCode, ...props};
       return (
         <CharTableCell {...newProps} />
