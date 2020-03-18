@@ -5,7 +5,6 @@ import {getActiveColor} from '../../../utils/layout';
 
 import Grid from '../../atoms/grid';
 import KanjiTable from '../kanji-table'
-import CharTableCell from '../chartable-cell'
 
 
 const CharList = props => {
@@ -40,14 +39,12 @@ const CharList = props => {
             charType={'kanji'}
             kanjiInfo={props.kanjiInfo}
             makeButton={props.makeButton}
-            onSelectChar={props.onSelectChar}
           />
         ) : (
           <CharTable
             charInfo={CHARS[charType]}
             charType={charType}
             makeButton={props.makeButton}
-            onSelectChar={props.onSelectChar}
           />
         )}
       </Grid>
@@ -68,10 +65,9 @@ const CharTable = props => {
         <Grid container key={i} justify='space-between'>
           {row.map((c, j) => {
             const charCode = '0x' + c.charCodeAt(0).toString(16).padStart(4, '0');
-            const p = {c: c, j: j, charCode: charCode, ...props};
             return (
               <Grid flex={1/5} p={'2px'} key={props.key}>
-                <CharTableCell {...p} />
+                {c && props.makeButton(charCode, props.charType, c)}
               </Grid>
             )
           })}

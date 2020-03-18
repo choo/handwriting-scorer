@@ -3,6 +3,7 @@ import {shuffleArray} from '../../../../utils/utils';
 import {CHAR_DISPLAYS} from '../../../../utils/const';
 import {NUM_DISPLAY_ROW} from '../../../../utils/const';
 
+import style from './style';
 import CharList from '../../../molecules/charlist';
 
 import Grid from '../../../atoms/grid';
@@ -56,7 +57,13 @@ const ResultsSelection = props => {
           </Grid>
           <CharList
             kanjiInfo={props.kanjiInfo}
-            onSelectChar={props.onSelectChar}
+            makeButton={(charCode, charType, c) => (
+              <Button outlined
+                onClick={(e) => props.onSelectChar(charCode)}
+              >
+                <span class={style.cellInner}>{c}</span>
+              </Button>
+            )}
           />
         </>
       )}
@@ -84,17 +91,13 @@ const SelectSuggestion = props => {
               const charCode = result[0];
               return (
                 <Grid flex={1/6} m='2px' key={charCode}>
-                  <Button
-                    outlined
-                    style={{
-                      minWidth: '48px',
-                      fontSize: '16px',
-                      fontFamily: "Noto Serif JP",
-                    }}
+                  <Button outlined class={style.charcell}
                     onClick={(e) => props.onSelectChar(charCode)}
                   >
-                    {String.fromCharCode(parseInt(charCode, 16))}
-                    {/* {' ' + result[1].toFixed(4)} {/* probablity */}
+                    <span class={style.cellInner}>
+                      {String.fromCharCode(parseInt(charCode, 16))}
+                      {/* {' ' + result[1].toFixed(4)} {/* probablity */}
+                    </span>
                   </Button>
                 </Grid>
               )
