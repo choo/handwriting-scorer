@@ -1,6 +1,5 @@
 import Grid from '../../atoms/grid';
 import Button from '../../atoms/button';
-import style from './style.css';
 import Logo from '../../../assets/logo_symbol_white_bg.png'
 import GitHubLogo from '../../../assets/about/GitHub-Mark-64px.png'
 import TwitterLogo from '../../../assets/about/Twitter_Social_Icon_Rounded_Square_Color.png'
