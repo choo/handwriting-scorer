@@ -2,7 +2,6 @@ import { useState } from 'preact/hooks';
 
 import Grid from '../../atoms/grid';
 import GridList from '../../atoms/gridlist';
-import CharTableCell from '../chartable-cell'
 
 import {getActiveColor} from '../../../utils/layout';
 
@@ -179,10 +178,7 @@ const KanjiTableBlock = props => (
     makeCell={(info, key) => {
       const c = info.title;
       const charCode = '0x' + c.charCodeAt(0).toString(16).padStart(4, '0');
-      const newProps = {c: c, key: key, charCode: charCode, ...props};
-      return (
-        <CharTableCell {...newProps} />
-      )
+      return props.makeButton(charCode, props.charType, c);
     }}
   />
 );
