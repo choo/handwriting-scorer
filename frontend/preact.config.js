@@ -3,7 +3,7 @@
  */
 module.exports = function(config, env, webpack) {
   if (env.dev) {
-    config.devServer.port = 8888;
+    config.devServer.port = 80;
     config.devServer.proxy = [
       {
         // proxy requests matching a pattern:
