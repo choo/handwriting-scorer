@@ -6,18 +6,27 @@ import Button from '../button';
  * props:
  *    buttonText: (required) string: display text for on button
  *    menu  : (required) menu contents
- *    style : (optional) style settings such as menu position
- *    onClickClose : (optional, default: false)
- *      close menu whenever and wherever clicked.
+ *    keepDisplay : (optional, default: false)
+ *      keep menu displayed when menu item is clicked
+ *    items :
+ *    width :
+ *    current :
+ *    onSelect:
+ *    listStyle : (optional) style settings such as menu position
+ *      ex.) list should be display on upper right, the following should be given
+ *        style={{
+ *          bottom: '2.0rem',
+ *          transformOrigin: 'bottom left',
+ *        }}
  */
-const Popup = (props) => {
+const Menu = (props) => {
   const [isShown, setIsShown] = useState(false);
   const popupRef = useRef();
   const documentClickHandler = useRef();
 
   useEffect(() => {
     documentClickHandler.current = e => {
-      if (props.onClickClose || !popupRef.current.contains(e.target)) {
+      if (!props.keepDisplay || !popupRef.current.contains(e.target)) {
         setIsShown(false);
         document.removeEventListener('click', documentClickHandler.current);
       }
@@ -36,22 +45,33 @@ const Popup = (props) => {
   }
 
   return (
-    <div class={style.wrapper}>
+    <div class={style.wrapper} style={props.width ? {width: props.width} : {}}>
       <Button outlined onClick={handleToggleButtonClick}>
         {props.buttonText}
       </Button>
       <div
         class={`${style.menu} ${isShown ? style.shown : ''}`}
-        style={{
-          transformOrigin: 'top left',
-          ...props.style || {}, // bottom: OOpx...
-        }}
+        style={props.listStyle} // bottom: OOpx...
         ref={popupRef}
       >
-        {props.menu}
+        <div class={style.itemsWrapper}>
+          {
+            props.items.map((val, idx) => {
+              return (
+                <a key={idx}
+                  class={style.item}
+                  onClick={() => props.onSelect(val)}
+                  style={props.makeItemStyle(val)}
+                >
+                  {val}
+                </a>
+              )
+            })
+          }
+        </div>
       </div>
     </div>
   );
 };
 
-export default Popup;
+export default Menu;

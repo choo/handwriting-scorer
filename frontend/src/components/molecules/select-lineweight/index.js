@@ -1,11 +1,11 @@
-import Popup from '../../atoms/popup';
+import Menu from '../../atoms/menu';
 
 import Wording   from '../../../utils/lang';
 import {getActiveColor} from '../../../utils/layout';
-import style from './style.css';
 
 const LANG = 'ja'
 const WEIGHT_OPTIONS = [2,5,10,15,20,25,30];
+const options = WEIGHT_OPTIONS.map(val => val + 'px');
 
 const SelectLineWeight = (props) => {
   const handleClickItem = val => {
@@ -15,39 +15,19 @@ const SelectLineWeight = (props) => {
   /* buttonText=<LineWeightIcon /> */
   return (
     <>
-      <Popup
-        style={{
+      <Menu
+        listStyle={{
           bottom: '2.0rem',
           transformOrigin: 'bottom left',
+          minWidth: '160px',
         }}
-        onClickClose={true}
         buttonText={Wording.lineWeightButton[LANG]}
-        menu={
-          <div style={{
-            minWidth: '160px',
-            overflow: 'auto',
-            boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
-            backgroundColor: '#fff',
-            margin: '4px 0px',
-          }}>
-            {
-              WEIGHT_OPTIONS.map(val => {
-                // FIXME: add checked icon
-                return (
-                  <a key={val}
-                    class={style.selection}
-                    selected={val === props.weight}
-                    onClick={() => handleClickItem(val)}
-                    style={{
-                      backgroundColor: getActiveColor(val, props.weight),
-                  }}>
-                    {val}px
-                  </a>
-                )
-              })
-            }
-          </div>
-        }
+        items={options}
+        current={props.weight}
+        onSelect={(val) => handleClickItem(val.replace('px', '') - 0)}
+        makeItemStyle={(val) => {
+          return {backgroundColor: getActiveColor(val, props.weight + 'px')}
+        }}
       />
     </>
   );
