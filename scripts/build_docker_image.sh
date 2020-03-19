@@ -12,7 +12,6 @@ fi
 set -e
 
 IMAGE_NAME=$1
-TAG=`date '+%Y%m%d-%H%M'`
 BASEDIR=$(cd $(dirname $0)/..; pwd)
 
 # include common.sh
@@ -23,15 +22,5 @@ build_frontend
 # build container image
 cd ${BASEDIR}
 docker build -t ${IMAGE_NAME} .
-docker image tag ${IMAGE_NAME} ${IMAGE_NAME}:${TAG}
-#docker image tag ${IMAGE_NAME} \
-#                 ${IMAGE_REGISTRY}/${IMAGE_NAME}
-#docker image tag ${IMAGE_NAME} \
-#                 ${IMAGE_REGISTRY}/${IMAGE_NAME}:${TAG}
 
-echo "\n"
-echo "************************************************************"
-echo "*** COMPLETED Building Image!"
-echo "*** Run the following command to start container. "
-echo "***   sudo docker run --rm -p {PORT}:{PORT} ${IMAGE_NAME}  "
-echo "************************************************************"
+echo "\n*** Building Docker Image done!"

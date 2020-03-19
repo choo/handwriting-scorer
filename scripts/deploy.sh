@@ -1,8 +1,8 @@
 #!/bin/sh
 
-if [ $# -ne 1 ]; then
+if [ $# -ne 2 ]; then
     echo "Usage:" 1>&2
-    echo "  ${0}  IMAGE_NAME" 1>&2
+    echo "  ${0}  IMAGE_NAME  IMAGE_REGISTRY" 1>&2
     exit 1
 fi
 
@@ -12,7 +12,9 @@ set -e
 # that can execute docker command in the container.
 
 IMAGE_NAME=$1
+IMAGE_REGISTRY=$2
 BASEDIR=$(cd $(dirname $0)/..; pwd)
+TAG=`date '+%Y%m%d-%H%M'`
 DEPLOY_CONTAINER_IMAGE=dev # conainer image name for deployment (CI server)
 
 ## if the platform of container is the same as the host
@@ -29,3 +31,17 @@ sudo docker run -it --rm \
 # # cf.) https://github.com/moby/moby/issues/15360
 # URL=https://get.docker.com/builds/Linux/x86_64/docker-client-1.13.1.tgz
 # RUN curl -L ${URL} | tar -xz -C /usr/local/bin
+
+docker image tag ${IMAGE_NAME} ${IMAGE_NAME}:${TAG}
+docker image tag ${IMAGE_NAME} \
+                 ${IMAGE_REGISTRY}/${IMAGE_NAME}
+docker image tag ${IMAGE_NAME} \
+                 ${IMAGE_REGISTRY}/${IMAGE_NAME}:${TAG}
+docker push ${IMAGE_REGISTRY}/${IMAGE_NAME}
+
+echo "\n"
+echo "************************************************************"
+echo "*** COMPLETED push docker image!"
+echo "*** Run the following command to start container. "
+echo "***   sudo docker run --rm -p {PORT}:{PORT} ${IMAGE_NAME}  "
+echo "************************************************************"
