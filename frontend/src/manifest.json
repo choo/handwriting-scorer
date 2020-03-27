@@ -8,6 +8,11 @@
   "theme_color": "#673ab8",
   "icons": [
     {
+      "src": "/assets/icons/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "64x64 32x32 24x24 16x16"
+    },
+    {
       "src": "/assets/icons/android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
