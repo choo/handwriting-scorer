@@ -47,8 +47,8 @@ class Model(object):
             message = 'Model name "{}" is invalid'.format(self.model_name)
             raise Exception(message)
 
-        # prebuild and precompile the model so that 'predict()' makes faster
-        # without doing this, every call of predcit() will be very time consuming
+        # prebuild and precompile the model to speed up the predict() function
+        # without doing this, every call of predict() will be very slow
         self.loaded_model = keras.models.load_model(self.weight_path)
         self.loaded_model._make_predict_function()
 
